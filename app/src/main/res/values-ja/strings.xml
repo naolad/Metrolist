@@ -61,7 +61,7 @@
     <string name="edit">編集</string>
     <string name="start_radio">ラジオを再生</string>
     <string name="play">再生</string>
-    <string name="pause">停止</string>
+    <string name="pause">一時停止</string>
     <string name="play_next">次に再生</string>
     <string name="add_to_queue">キューに追加</string>
     <string name="add_to_library">ライブラリに追加</string>
