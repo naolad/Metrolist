@@ -139,8 +139,7 @@ android {
         debug {
             applicationIdSuffix = ".debug"
             isDebuggable = true
-            signingConfig =
-                signingConfigs.getByName("debug")
+            
             externalNativeBuild {
                 cmake {
                     arguments += listOf(
