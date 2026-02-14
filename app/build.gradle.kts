@@ -139,11 +139,8 @@ android {
         debug {
             applicationIdSuffix = ".debug"
             isDebuggable = true
-            signingConfig = if (System.getenv("GITHUB_EVENT_NAME") == "pull_request") {
+            signingConfig =
                 signingConfigs.getByName("debug")
-            } else {
-                signingConfigs.getByName("persistentDebug")
-            }
             externalNativeBuild {
                 cmake {
                     arguments += listOf(
