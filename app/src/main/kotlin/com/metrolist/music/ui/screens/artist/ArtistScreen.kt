@@ -501,7 +501,7 @@ fun ArtistScreen(
 
                                 if (showMonthlyListeners && !monthlyListeners.isNullOrEmpty()) {
                                     Text(
-                                        text = monthlyListeners,
+                                        text = monthlyListeners.replace(" 人", "人"),
                                         style = MaterialTheme.typography.bodyMedium,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                                         modifier = Modifier.padding(bottom = if (showArtistDescription && !description.isNullOrEmpty()) 8.dp else 0.dp)
