@@ -492,7 +492,7 @@ fun ArtistScreen(
 
                                 if (showArtistSubscriberCount && !subscriberCount.isNullOrEmpty()) {
                                     Text(
-                                        text = subscriberCount,
+                                        text = "$subscriberCount:".replace("  ", " "),
                                         style = MaterialTheme.typography.bodyMedium,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                                         modifier = Modifier.padding(bottom = 4.dp)
