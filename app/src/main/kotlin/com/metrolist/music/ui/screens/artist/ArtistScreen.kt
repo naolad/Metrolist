@@ -492,7 +492,7 @@ fun ArtistScreen(
 
                                 if (showArtistSubscriberCount && !subscriberCount.isNullOrEmpty()) {
                                     Text(
-                                        text = subscriberCount.replace(" ", ": "),
+                                        text = if (subscriberCount.contains("登録者")) subscriberCount.replace(" ", ": ") else subscriberCount,
                                         style = MaterialTheme.typography.bodyMedium,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                                         modifier = Modifier.padding(bottom = 4.dp)
