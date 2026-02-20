@@ -67,7 +67,7 @@
 <string name="add_to_library">ライブラリに追加</string>
 <string name="add_all_to_library">すべてライブラリに追加</string>
 <string name="remove_from_library">ライブラリから削除</string>
-<string name="remove_all_from_library">すべてライブラリから削除</string>
+<string name="remove_all_from_library">ライブラリからすべて削除</string>
 <string name="action_download">ダウンロード</string>
 <string name="downloading">ダウンロード中</string>
 <string name="remove_download">ダウンロードを削除</string>
