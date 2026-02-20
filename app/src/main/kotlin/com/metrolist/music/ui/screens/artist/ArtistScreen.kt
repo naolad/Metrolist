@@ -483,8 +483,8 @@ fun ArtistScreen(
                             ) {
                                 if (showArtistDescription && (!description.isNullOrEmpty() || !descriptionRuns.isNullOrEmpty())) {
                                     Text(
-                                        text = stringResource(R.string.about_artist),
-                                        style = MaterialTheme.typography.titleMedium,
+                                        text = "$subscriberCount:".replace("  ", " "),
+                                        style = MaterialTheme.typography.bodyMedium,
                                         fontWeight = FontWeight.Bold,
                                         modifier = Modifier.padding(bottom = 8.dp)
                                     )
@@ -492,7 +492,7 @@ fun ArtistScreen(
 
                                 if (showArtistSubscriberCount && !subscriberCount.isNullOrEmpty()) {
                                     Text(
-                                        text = "$subscriberCount:".replace("  ", " "),
+                                        text = subscriberCount.replace(" ", ": "),
                                         style = MaterialTheme.typography.bodyMedium,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                                         modifier = Modifier.padding(bottom = 4.dp)
