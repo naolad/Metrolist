@@ -277,9 +277,7 @@ fun ShowMediaInfo(videoId: String) {
                     ) {
                         BasicText(
                             text = "${stringResource(R.string.subscribers)}: ${
-                                info?.subscribers?.filter { it.isDigit() }?.let { 
-                                    if (it.isEmpty()) "" else numberFormatter(it.toInt())
-                                } ?: ""
+                                info?.subscribers?.filter { it.isDigit() }?.toLongOrNull()?.let { numberFormatter(it) }.orEmpty()
                             }",
                             style = MaterialTheme.typography.titleSmall.copy(color = MaterialTheme.colorScheme.onBackground),
                         )
