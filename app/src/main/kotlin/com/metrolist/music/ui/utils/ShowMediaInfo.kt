@@ -276,7 +276,7 @@ fun ShowMediaInfo(videoId: String) {
                             .padding(horizontal = 16.dp, vertical = 12.dp)
                     ) {
                         BasicText(
-                            text = "${stringResource(R.string.subscribers)}: ${info?.subscribers ?: ""}",
+                            text = "${stringResource(R.string.subscribers)}: ${info?.subscribers?.replace("チャンネル登録者数", "")?.trim() ?: ""}",
                             style = MaterialTheme.typography.titleSmall.copy(color = MaterialTheme.colorScheme.onBackground),
                         )
                         BasicText(
