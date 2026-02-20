@@ -275,11 +275,11 @@ fun ShowMediaInfo(videoId: String) {
                             .fillMaxWidth()
                             .padding(horizontal = 16.dp, vertical = 12.dp)
                     ) {
-                         BasicText(
-                             text = "${stringResource(R.string.subscribers)}: ${
-                                 info?.subscribers?.filter { it.isDigit() }?.toLongOrNull()?.let { numberFormatter(it) }.orEmpty()
-                             }",
-                             style = MaterialTheme.typography.titleSmall.copy(color = MaterialTheme.colorScheme.onBackground),
+                        BasicText(
+                            text = "${stringResource(R.string.subscribers)}: ${
+                                info?.subscribers?.filter { it.isDigit() }?.toIntOrNull()?.let { numberFormatter(it) }.orEmpty()
+                            }",
+                            style = MaterialTheme.typography.titleSmall.copy(color = MaterialTheme.colorScheme.onBackground),
                         )
                         BasicText(
                             text = "${stringResource(R.string.views)}: ${info?.viewCount?.let(::numberFormatter).orEmpty()}",
