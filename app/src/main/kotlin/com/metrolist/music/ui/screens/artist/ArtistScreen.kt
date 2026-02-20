@@ -483,8 +483,8 @@ fun ArtistScreen(
                             ) {
                                 if (showArtistDescription && (!description.isNullOrEmpty() || !descriptionRuns.isNullOrEmpty())) {
                                     Text(
-                                        text = "$subscriberCount:".replace("  ", " "),
-                                        style = MaterialTheme.typography.bodyMedium,
+                                        text = stringResource(R.string.about_artist),
+                                        style = MaterialTheme.typography.titleMedium,
                                         fontWeight = FontWeight.Bold,
                                         modifier = Modifier.padding(bottom = 8.dp)
                                     )
