@@ -287,7 +287,7 @@ fun ShowMediaInfo(videoId: String) {
                                         else ->
                                             stripped.toDoubleOrNull() ?: 0.0
                                     }
-                                   numberFormatter(number.toLong())
+                                   numberFormatter(number.toInt())
                               } ?: ""
                            }",
                            style = MaterialTheme.typography.titleSmall.copy(color = MaterialTheme.colorScheme.onBackground),
