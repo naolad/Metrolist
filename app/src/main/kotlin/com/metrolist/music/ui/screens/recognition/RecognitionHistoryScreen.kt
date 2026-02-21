@@ -193,7 +193,7 @@ fun RecognitionHistoryScreen(
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(
-                        text = "No recognition history",
+                        text = "認識履歴がありません",
                         style = MaterialTheme.typography.bodyLarge,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -235,7 +235,7 @@ private fun RecognitionHistoryItem(
     onClick: () -> Unit,
     onDelete: () -> Unit
 ) {
-    val dateFormatter = remember { DateTimeFormatter.ofPattern("MMM dd, yyyy HH:mm") }
+    val dateFormatter = remember { DateTimeFormatter.ofPattern("yyyy年M月d(E) a hh:mm") }
     
     Card(
         modifier = Modifier
