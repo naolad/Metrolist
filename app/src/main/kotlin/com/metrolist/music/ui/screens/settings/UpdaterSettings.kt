@@ -81,7 +81,7 @@ fun UpdaterScreen(
                         changelogContent = releaseInfo.description
                     }
                 }.onFailure {
-                    checkError = "アップデートを確認できませんでした: ${it.message}"
+                    checkError = "Failed to check for updates: ${it.message}"
                 }
             }
             isChecking = false
@@ -112,7 +112,7 @@ fun UpdaterScreen(
 
         // Current Version Info
         Material3SettingsGroup(
-            title = "現在のバージョン",
+            title = "Current Version",
             items = listOf(
                 Material3SettingsItem(
                     title = {
@@ -131,7 +131,7 @@ fun UpdaterScreen(
 
         // Auto Update Settings
         Material3SettingsGroup(
-            title = "アップデート設定",
+            title = "Update Settings",
             items = buildList {
                 add(
                     Material3SettingsItem(
@@ -169,17 +169,17 @@ fun UpdaterScreen(
 
         // Manual Check
         Material3SettingsGroup(
-            title = "アップデートを確認",
+            title = "Check for Updates",
             items = listOf(
                 Material3SettingsItem(
                     icon = painterResource(R.drawable.refresh),
                     title = { 
                         if (isChecking) {
-                            Text("アップデートを確認中...")
+                            Text("Checking for updates...")
                         } else if (latestVersion != null) {
-                            Text("最新: $latestVersion")
+                            Text("Latest: $latestVersion")
                         } else {
-                            Text("アップデートを確認")
+                            Text("Check for Updates")
                         }
                     },
                     trailingContent = {
@@ -191,7 +191,7 @@ fun UpdaterScreen(
                         } else if (updateAvailable) {
                             Icon(
                                 painter = painterResource(R.drawable.download),
-                                contentDescription = "アップデートがあります",
+                                contentDescription = "Update available",
                                 tint = MaterialTheme.colorScheme.primary
                             )
                         }
@@ -219,7 +219,7 @@ fun UpdaterScreen(
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp)
             ) {
-                Text(if (showChangelog) "更新履歴を非表示" else "更新履歴を表示")
+                Text(if (showChangelog) "Hide Changelog" else "View Changelog")
             }
 
             if (showChangelog && changelogContent != null) {
