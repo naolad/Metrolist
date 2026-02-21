@@ -25,11 +25,11 @@ val DensityScaleKey = floatPreferencesKey("density_scale_factor")
 val CustomDensityScaleKey = floatPreferencesKey("custom_density_scale_value")
 
 enum class DensityScale(val value: Float, val label: String) {
-    NATIVE(1.0f, "標準 (100%)"),
-    SLIGHTLY_COMPACT(0.85f, "ややコンパクト (85%)"),
-    COMPACT(0.75f, "コンパクト (75%)"),
-    VERY_COMPACT(0.65f, "かなりコンパクト (65%)"),
-    ULTRA_COMPACT(0.55f, "最小 (55%)");
+    NATIVE(1.0f, "Native (100%)"),
+    SLIGHTLY_COMPACT(0.85f, "Slightly Compact (85%)"),
+    COMPACT(0.75f, "Compact (75%)"),
+    VERY_COMPACT(0.65f, "Very Compact (65%)"),
+    ULTRA_COMPACT(0.55f, "Ultra Compact (55%)");
 
     companion object {
         fun fromValue(value: Float): DensityScale = entries.find { it.value == value } ?: NATIVE
