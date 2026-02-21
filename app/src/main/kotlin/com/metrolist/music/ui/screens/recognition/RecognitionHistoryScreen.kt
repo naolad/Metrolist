@@ -235,7 +235,7 @@ private fun RecognitionHistoryItem(
     onClick: () -> Unit,
     onDelete: () -> Unit
 ) {
-    val dateFormatter = remember { DateTimeFormatter.ofPattern("yyyy年M月d(E) a hh:mm") }
+    val dateFormatter = remember { DateTimeFormatter.ofPattern("yyyy年M月d(E)日 ahh:mm分") }
     
     Card(
         modifier = Modifier
