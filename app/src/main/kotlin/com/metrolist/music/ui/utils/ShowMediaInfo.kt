@@ -276,8 +276,21 @@ fun ShowMediaInfo(videoId: String) {
                             .padding(horizontal = 16.dp, vertical = 12.dp)
                     ) {
                         BasicText(
-                            text = "${stringResource(R.string.subscribers)}: ${info?.subscribers ?: ""}",
-                            style = MaterialTheme.typography.titleSmall.copy(color = MaterialTheme.colorScheme.onBackground),
+                            text = "${stringResource(R.string.subscribers)}: ${
+                                info?.subscribers?.let { raw ->
+                                    val stripped = raw.trimEnd('人')
+                                    val number = when {
+                                        stripped.endsWith("億") ->
+                                            (stripped.dropLast(1).toDoubleOrNull() ?: 0.0) * 100_000_000
+                                        stripped.endsWith("万") ->
+                                            (stripped.dropLast(1).toDoubleOrNull() ?: 0.0) * 10_000
+                                        else ->
+                                            stripped.toDoubleOrNull() ?: 0.0
+                                    }
+                                   numberFormatter(number.toLong())
+                              } ?: ""
+                           }",
+                           style = MaterialTheme.typography.titleSmall.copy(color = MaterialTheme.colorScheme.onBackground),
                         )
                         BasicText(
                             text = "${stringResource(R.string.views)}: ${info?.viewCount?.let(::numberFormatter).orEmpty()}",
