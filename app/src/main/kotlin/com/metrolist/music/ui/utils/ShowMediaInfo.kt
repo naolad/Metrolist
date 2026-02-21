@@ -284,6 +284,12 @@ fun ShowMediaInfo(videoId: String) {
                                             (stripped.dropLast(1).toDoubleOrNull() ?: 0.0) * 100_000_000
                                         stripped.endsWith("万") ->
                                             (stripped.dropLast(1).toDoubleOrNull() ?: 0.0) * 10_000
+                                        stripped.endsWith("B") ->
+                                            (stripped.dropLast(1).toDoubleOrNull() ?: 0.0) * 1_000_000_000
+                                        stripped.endsWith("M") ->
+                                            (stripped.dropLast(1).toDoubleOrNull() ?: 0.0) * 1_000_000
+                                        stripped.endsWith("K") ->
+                                            (stripped.dropLast(1).toDoubleOrNull() ?: 0.0) * 1_000
                                         else ->
                                             stripped.toDoubleOrNull() ?: 0.0
                                     }
