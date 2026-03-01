@@ -61,6 +61,7 @@
     <string name="edit">編集</string>
     <string name="start_radio">ラジオを再生</string>
     <string name="play">再生</string>
+    <string name="pause">停止</string>
     <string name="play_next">次に再生</string>
     <string name="add_to_queue">キューに追加</string>
     <string name="add_to_library">ライブラリに追加</string>
@@ -173,6 +174,11 @@
     <string name="settings">設定</string>
     <string name="appearance">外観</string>
     <string name="theme">テーマ</string>
+    <string name="theme_desc">アプリのテーマをカスタマイズします</string>
+    <string name="theme_colors">テーマと色</string>
+    <string name="theme_mode">テーマ</string>
+    <string name="color_palette">配色</string>
+    <string name="use_system_colors">システムの色を使用</string>
     <string name="enable_dynamic_theme">動的テーマ</string>
     <string name="dark_theme">ダークテーマ</string>
     <string name="dark_theme_on">オン</string>
