@@ -636,7 +636,7 @@
     <string name="speed_dial">クイック再生</string>
     <string name="pin_to_speed_dial">クイック再生にピン留め</string>
     <string name="unpin_from_speed_dial">クイック再生のピン留めを解除</string>
-    <string name="randomize_home_order">ホーム画面の順序をランダム化</string>
+    <string name="randomize_home_order">ホーム画面の表示順をランダムにする</string>
     <string name="randomize_home_order_desc">ホーム画面の各項目をランダムに並び替えます</string>
     <string name="daily_discover_sounds_like">%1$sに似たおすすめ</string>
     <string name="your_daily_discover">今日のおすすめ</string>
@@ -704,7 +704,7 @@
     <string name="metrolist">METROLIST</string>
     <string name="wanna_play_favorite_song">お気に入りの曲を再生しますか？</string>
     <string name="yeah">はい</string>
-    <string name="stands_with_palestine">このプロジェクトはパレスチナを支持します 🇵🇸</string>
+    <string name="stands_with_palestine">このプロジェクトはパレスチナを支持しています 🇵🇸</string>
     <string name="filter_podcasts">ポッドキャスト</string>
     <string name="view_podcast">ポッドキャストを表示</string>
     <string name="podcast_channels">ポッドキャストチャンネル</string>
@@ -731,4 +731,28 @@
     <string name="no_account_found">アカウントが見つかりません</string>
     <string name="restore_success">復元が完了しました</string>
     <string name="no_songs_found">曲が見つかりません。ファイルが無効であるか、該当する曲が存在しない可能性があります。</string>
+    <string name="widget_recognizer_name">音楽認識</string>
+    <string name="widget_recognizer_description">ホーム画面から直接、周囲で再生中の楽曲を識別できます</string>
+    <string name="widget_recognizer_tap_to_search">タップして開始</string>
+    <string name="widget_recognizer_listening">聴き取り中…</string>
+    <string name="widget_recognizer_processing">認識中…</string>
+    <string name="widget_recognizer_no_match">一致する曲が見つかりませんでした。もう一度お試しください</string>
+    <string name="widget_recognizer_error">認識に失敗しました</string>
+    <string name="widget_recognizer_error_generic">エラーが発生しました。もう一度お試しください</string>
+    <string name="widget_recognizer_unknown_song">不明な曲</string>
+    <string name="widget_recognizer_unknown_artist">不明なアーティスト</string>
+    <string name="widget_recognizer_mic_desc">曲を認識します</string>
+    <string name="widget_recognizer_channel_name">楽曲認識</string>
+    <string name="widget_recognizer_channel_desc">ウィジェットから曲を認識している間、通知を表示します</string>
+    <string name="widget_recognizer_notification_text">音声を録音中…</string>
+    <string name="filter_episodes">エピソード</string>
+    <string name="filter_channels">チャンネル</string>
+    <string name="auto_playlist">自動プレイリスト</string>
+    <string name="downloaded_episodes">ダウンロード済みのエピソード</string>
+    <string name="episodes_for_later_empty">保存済みのエピソードはありません</string>
+    <string name="no_subscribed_channels">登録済みのチャンネルはありません</string>
+    <string name="no_downloaded_episodes">ダウンロード済みのエピソードはありません</string>
+    <plurals name="n_channel">
+        <item quantity="other">%dチャンネル</item>
+    </plurals>
 </resources>
