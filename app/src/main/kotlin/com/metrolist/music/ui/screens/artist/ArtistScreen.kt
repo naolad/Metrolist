@@ -494,7 +494,7 @@ fun ArtistScreen(
 
                                 if (showArtistSubscriberCount && !subscriberCount.isNullOrEmpty()) {
                                     Text(
-                                        text = subscriberCount,
+                                        text = if (subscriberCount.contains("登録者")) subscriberCount.replace(" ", ": ") else subscriberCount,
                                         style = MaterialTheme.typography.bodyMedium,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                                         modifier = Modifier.padding(bottom = 4.dp)
@@ -503,7 +503,7 @@ fun ArtistScreen(
 
                                 if (showMonthlyListeners && !monthlyListeners.isNullOrEmpty()) {
                                     Text(
-                                        text = monthlyListeners,
+                                        text = monthlyListeners.replace(" 人", "人"),
                                         style = MaterialTheme.typography.bodyMedium,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                                         modifier = Modifier.padding(bottom = if (showArtistDescription && !description.isNullOrEmpty()) 8.dp else 0.dp)
