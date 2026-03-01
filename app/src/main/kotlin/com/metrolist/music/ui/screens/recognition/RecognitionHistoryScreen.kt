@@ -235,8 +235,16 @@ private fun RecognitionHistoryItem(
     onClick: () -> Unit,
     onDelete: () -> Unit
 ) {
-    val dateFormatter = remember { DateTimeFormatter.ofPattern("MMM dd, yyyy HH:mm") }
-    
+    val dateFormatter = remember {
+        if (java.util.Locale.getDefault().language == "ja") {
+            DateTimeFormatter.ofPattern("yyyy/M/d (E) HH:mm", java.util.Locale.JAPANESE)
+        } else {
+            DateTimeFormatter.ofLocalizedDateTime(
+                java.time.format.FormatStyle.MEDIUM,
+                java.time.format.FormatStyle.SHORT
+            ).withLocale(java.util.Locale.getDefault())
+        }
+    }
     Card(
         modifier = Modifier
             .fillMaxWidth()
