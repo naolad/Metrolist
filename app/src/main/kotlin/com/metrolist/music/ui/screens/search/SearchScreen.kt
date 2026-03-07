@@ -52,6 +52,7 @@ import com.metrolist.music.LocalDatabase
 import com.metrolist.music.LocalIsPlayerExpanded
 import com.metrolist.music.LocalPlayerAwareWindowInsets
 import com.metrolist.music.R
+import com.metrolist.music.constants.HideMusicRecognitionButtonKey
 import com.metrolist.music.constants.PauseSearchHistoryKey
 import com.metrolist.music.constants.SearchSource
 import com.metrolist.music.constants.SearchSourceKey
@@ -83,6 +84,7 @@ fun SearchScreen(
         mutableStateOf(TextFieldValue())
     }
     val pauseSearchHistory by rememberPreference(PauseSearchHistoryKey, defaultValue = false)
+    val (hideMusicRecognitionButton) = rememberPreference(HideMusicRecognitionButtonKey, defaultValue = false)
     var isFirstLaunch by rememberSaveable { mutableStateOf(true) }
 
     val onSearch: (String) -> Unit = remember {
@@ -239,12 +241,14 @@ fun SearchScreen(
                     )
                 }
             }
-            
-            HideOnScrollFAB(
-                lazyListState = lazyListState,
-                icon = R.drawable.mic,
-                onClick = { navController.navigate("recognition") }
-            )
+
+            if (!hideMusicRecognitionButton) {
+                HideOnScrollFAB(
+                    lazyListState = lazyListState,
+                    icon = R.drawable.mic,
+                    onClick = { navController.navigate("recognition") }
+                )
+            }    
         }
     }
 
