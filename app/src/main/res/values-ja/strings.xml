@@ -223,6 +223,7 @@
     <string name="auto_load_more_desc">キューの最後まで再生したあと、可能なら自動で曲を追加します</string>
     <string name="skip_silence">無音の部分を早送り</string>
     <string name="audio_normalization">音量を均一化</string>
+    <string name="audio_normalization_desc">曲を再生中に突然音が大きくなったり、小さくなったりしないようにします</string>
     <string name="auto_skip_next_on_error">エラー発生時に自動で次の曲を再生</string>
     <string name="auto_skip_next_on_error_desc">継続的な音楽体験を維持します</string>
     <string name="stop_music_on_task_clear">タスクを削除したら再生を停止</string>

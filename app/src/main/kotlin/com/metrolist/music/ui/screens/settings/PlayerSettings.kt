@@ -408,6 +408,7 @@ fun PlayerSettings(
                 add(Material3SettingsItem(
                     icon = painterResource(R.drawable.volume_up),
                     title = { Text(stringResource(R.string.audio_normalization)) },
+                    description = { Text(stringResource(R.string.audio_normalization_desc)) },
                     trailingContent = {
                         Switch(
                             checked = audioNormalization,
