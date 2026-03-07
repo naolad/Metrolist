@@ -544,14 +544,12 @@ fun OnlineSearchResult(
                     pureBlack = pureBlack,
                 )
             }
-            HideOnScrollFAB(
-                lazyListState = lazyListState,
-                icon = R.drawable.mic,
-                onClick = { navController.navigate("recognition") },
-                onRecognitionClick = if (!hideMusicRecognitionButton) {
-                    { navController.navigate("recognition") }
-                } else null,
-            )
-        }
-    }
-}
+            if (!hideMusicRecognitionButton) {
+                HideOnScrollFAB(
+                    lazyListState = lazyListState,
+                    icon = R.drawable.mic,
+                    onClick = { navController.navigate("recognition") },
+                )
+            }
+       }
+   }
