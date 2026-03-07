@@ -471,7 +471,10 @@ fun OnlineSearchResult(
                     if (searchFilter == null) {
                         searchSummary?.summaries?.forEach { summary ->
                             item {
-                                NavigationTitle(summary.title)
+                                NavigationTitle(
+                                    if (summary.title == "Top result") stringResource(R.string.top_result)
+                                    else summary.title
+                                )    
                             }
 
                             items(
