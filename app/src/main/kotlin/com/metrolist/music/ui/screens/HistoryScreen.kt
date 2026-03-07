@@ -146,7 +146,14 @@ fun HistoryScreen(
             DateAgo.Yesterday -> context.getString(R.string.yesterday)
             DateAgo.ThisWeek -> context.getString(R.string.this_week)
             DateAgo.LastWeek -> context.getString(R.string.last_week)
-            is DateAgo.Other -> dateAgo.date.format(DateTimeFormatter.ofPattern("yyyy/MM"))
+            is DateAgo.Other -> dateAgo.date.format(
+                if (java.util.Locale.getDefault().language == "ja") {
+                    DateTimeFormatter.ofPattern("yyyy/M", java.util.Locale.JAPANESE)
+                } else {
+                    DateTimeFormatter.ofLocalizedDate(java.time.format.FormatStyle.SHORT)
+                        .withLocale(java.util.Locale.getDefault())
+                }
+            )        
         }
     }
 

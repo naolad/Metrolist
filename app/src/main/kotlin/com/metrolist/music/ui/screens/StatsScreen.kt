@@ -93,8 +93,13 @@ fun StatsScreen(
                 .takeWhile { it.isAfter(firstEvent?.event?.timestamp?.minusWeeks(1)) }
                 .mapIndexed { index, date ->
                     val endDate = date.plusWeeks(1).minusDays(1).coerceAtMost(currentDate)
-                    val formatter = DateTimeFormatter.ofPattern("dd MMM")
-
+                    val isJa = java.util.Locale.getDefault().language == "ja"
+                    val formatter = if (isJa) {
+                        DateTimeFormatter.ofPattern("M/d", java.util.Locale.JAPANESE)
+                    } else {
+                        DateTimeFormatter.ofLocalizedDate(java.time.format.FormatStyle.SHORT)
+                            .withLocale(java.util.Locale.getDefault())
+                    }
                     val startDateFormatted = formatter.format(date)
                     val endDateFormatted = formatter.format(endDate)
 
@@ -105,10 +110,11 @@ fun StatsScreen(
 
                     val text =
                         when {
-                            startYear != currentDate.year -> "$startDateFormatted, $startYear - $endDateFormatted, $endYear"
+                            startYear != currentDate.year -> "$startDateFormatted/$startYear - $endDateFormatted/$endYear"
                             startMonth != endMonth -> "$startDateFormatted - $endDateFormatted"
-                            else -> "${date.dayOfMonth} - $endDateFormatted"
-                        }
+                            else -> if (isJa) "${date.month.value}/${date.dayOfMonth} - $endDateFormatted"
+                                    else "$startDateFormatted - $endDateFormatted"
+                    }
                     Pair(index, text)
                 }.toList()
         } else {
@@ -128,7 +134,11 @@ fun StatsScreen(
                             ?.withDayOfMonth(1),
                     )
                 }.mapIndexed { index, date ->
-                    val formatter = DateTimeFormatter.ofPattern("MMM")
+                    val formatter = if (java.util.Locale.getDefault().language == "ja") {
+                        DateTimeFormatter.ofPattern("M月", java.util.Locale.JAPANESE)
+                    } else {
+                        DateTimeFormatter.ofPattern("MMM", java.util.Locale.getDefault())
+                    }
                     val formattedDate = formatter.format(date)
                     val text =
                         if (date.year != currentDate.year) {
