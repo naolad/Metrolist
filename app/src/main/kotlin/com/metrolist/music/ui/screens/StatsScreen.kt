@@ -97,7 +97,7 @@ fun StatsScreen(
                     val formatter = if (isJa) {
                         DateTimeFormatter.ofPattern("M/d", java.util.Locale.JAPANESE)
                     } else {
-                        DateTimeFormatter.ofLocalizedDate(java.time.format.FormatStyle.SHORT)
+                        DateTimeFormatter.ofLocalizedDate(java.time.format.FormatStyle.MEDIUM)
                             .withLocale(java.util.Locale.getDefault())
                     }
                     val startDateFormatted = formatter.format(date)
@@ -110,7 +110,7 @@ fun StatsScreen(
 
                     val text =
                         when {
-                            startYear != currentDate.year -> "$startDateFormatted/$startYear - $endDateFormatted/$endYear"
+                            startYear != currentDate.year -> "$startDateFormatted - $endDateFormatted"
                             startMonth != endMonth -> "$startDateFormatted - $endDateFormatted"
                             else -> if (isJa) "${date.month.value}/${date.dayOfMonth} - $endDateFormatted"
                                     else "$startDateFormatted - $endDateFormatted"
