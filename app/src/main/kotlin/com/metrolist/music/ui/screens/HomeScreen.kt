@@ -2206,7 +2206,7 @@ fun HomeScreen(
 
                                 item(key = "home_section_title_${section.index}") {
                                     NavigationTitle(
-                                        title = sectionData.title,
+                                        title = sectionData.title.replace("再生リスト", "プレイリスト"),
                                         label = sectionData.label,
                                         thumbnail =
                                             sectionData.thumbnail?.let { thumbnailUrl ->
@@ -2260,7 +2260,7 @@ fun HomeScreen(
                                                 {
                                                     playerConnection.playQueue(
                                                         ListQueue(
-                                                            title = sectionData.title,
+                                                            title = sectionData.title.replace("再生リスト", "プレイリスト"),
                                                             items = sectionSongs.map { it.toMediaMetadata().toMediaItem() },
                                                         ),
                                                     )
