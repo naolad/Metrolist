@@ -1289,7 +1289,7 @@ fun HomeScreen(
                         sectionData?.let {
                             item(key = "1_chip_section_title_${section.index}") {
                                 NavigationTitle(
-                                    title = sectionData.title,
+                                    title = sectionData.title.replace("再生リスト", "プレイリスト"),
                                     label = sectionData.label,
                                     thumbnail =
                                         sectionData.thumbnail?.let { thumbnailUrl ->

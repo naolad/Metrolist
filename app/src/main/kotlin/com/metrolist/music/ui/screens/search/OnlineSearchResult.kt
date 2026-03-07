@@ -473,7 +473,7 @@ fun OnlineSearchResult(
                             item {
                                 NavigationTitle(
                                     if (summary.title == "Top result") stringResource(R.string.top_result)
-                                    else summary.title
+                                    else summary.title.replace("再生リスト", "プレイリスト")
                                 )    
                             }
 
