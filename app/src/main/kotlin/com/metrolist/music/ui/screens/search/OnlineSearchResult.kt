@@ -82,6 +82,7 @@ import com.metrolist.innertube.models.YTItem
 import com.metrolist.music.LocalDatabase
 import com.metrolist.music.LocalPlayerConnection
 import com.metrolist.music.R
+import com.metrolist.music.constants.HideMusicRecognitionButtonKey
 import com.metrolist.music.constants.HideVideoSongsKey
 import com.metrolist.music.constants.MiniPlayerBottomSpacing
 import com.metrolist.music.constants.MiniPlayerHeight
@@ -132,6 +133,7 @@ fun OnlineSearchResult(
 
     val pauseSearchHistory by rememberPreference(PauseSearchHistoryKey, defaultValue = false)
     val hideVideoSongs by rememberPreference(HideVideoSongsKey, defaultValue = false)
+    val (hideMusicRecognitionButton) = rememberPreference(HideMusicRecognitionButtonKey, defaultValue = false)
 
     BackHandler(enabled = isSearchFocused) {
         isSearchFocused = false
@@ -546,6 +548,9 @@ fun OnlineSearchResult(
                 lazyListState = lazyListState,
                 icon = R.drawable.mic,
                 onClick = { navController.navigate("recognition") },
+                onRecognitionClick = if (!hideMusicRecognitionButton) {
+                    { navController.navigate("recognition") }
+                } else null,
             )
         }
     }
