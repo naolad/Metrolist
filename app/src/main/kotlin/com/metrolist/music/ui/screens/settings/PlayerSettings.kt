@@ -120,7 +120,7 @@ fun PlayerSettings(
     )
     val (audioNormalization, onAudioNormalizationChange) = rememberPreference(
         AudioNormalizationKey,
-        defaultValue = true
+        defaultValue = false
     )
 
     val (audioOffload, onAudioOffloadChange) = rememberPreference(
@@ -140,7 +140,7 @@ fun PlayerSettings(
 
     val (autoLoadMore, onAutoLoadMoreChange) = rememberPreference(
         AutoLoadMoreKey,
-        defaultValue = true
+        defaultValue = false
     )
     val (disableLoadMoreWhenRepeatAll, onDisableLoadMoreWhenRepeatAllChange) = rememberPreference(
         DisableLoadMoreWhenRepeatAllKey,
@@ -152,7 +152,7 @@ fun PlayerSettings(
     )
     val (similarContentEnabled, similarContentEnabledChange) = rememberPreference(
         key = SimilarContent,
-        defaultValue = true
+        defaultValue = false
     )
     val (autoSkipNextOnError, onAutoSkipNextOnErrorChange) = rememberPreference(
         AutoSkipNextOnErrorKey,

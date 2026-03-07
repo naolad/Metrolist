@@ -226,11 +226,11 @@ fun AppearanceSettings(
     )
     val (swipeSensitivity, onSwipeSensitivityChange) = rememberPreference(
         SwipeSensitivityKey,
-        defaultValue = 0.73f
+        defaultValue = 0.60f
     )
     val (gridItemSize, onGridItemSizeChange) = rememberEnumPreference(
         GridItemsSizeKey,
-        defaultValue = GridItemSize.SMALL
+        defaultValue = GridItemSize.BIG
     )
 
     val (slimNav, onSlimNavChange) = rememberPreference(
@@ -269,7 +269,7 @@ fun AppearanceSettings(
 
     val (swipeToSong, onSwipeToSongChange) = rememberPreference(
         SwipeToSongKey,
-        defaultValue = false
+        defaultValue = true
     )
 
     val (swipeToRemoveSong, onSwipeToRemoveSongChange) = rememberPreference(
@@ -1194,7 +1194,7 @@ fun AppearanceSettings(
                 buttons = {
                     TextButton(
                         onClick = {
-                            tempSensitivity = 0.73f
+                            tempSensitivity = 0.60f
                         }
                     ) {
                         Text(stringResource(R.string.reset))

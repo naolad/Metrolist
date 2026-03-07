@@ -85,7 +85,7 @@ fun StorageSettings(
     val (maxImageCacheSize, onMaxImageCacheSizeChange) =
         rememberPreference(
             key = MaxImageCacheSizeKey,
-            defaultValue = 512,
+            defaultValue = 1024,
         )
     val (maxSongCacheSize, onMaxSongCacheSizeChange) =
         rememberPreference(
