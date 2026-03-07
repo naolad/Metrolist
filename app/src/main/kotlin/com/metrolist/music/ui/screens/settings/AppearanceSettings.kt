@@ -70,6 +70,7 @@ import com.metrolist.music.constants.GridItemsSizeKey
 import com.metrolist.music.constants.HidePlayerThumbnailKey
 import com.metrolist.music.constants.LibraryFilter
 import com.metrolist.music.constants.ListenTogetherInTopBarKey
+import com.metrolist.music.constants.HideMusicRecognitionButtonKey
 import com.metrolist.music.constants.LyricsAnimationStyle
 import com.metrolist.music.constants.LyricsAnimationStyleKey
 import com.metrolist.music.constants.LyricsClickKey
@@ -259,6 +260,11 @@ fun AppearanceSettings(
     val (listenTogetherInTopBar, onListenTogetherInTopBarChange) = rememberPreference(
         ListenTogetherInTopBarKey,
         defaultValue = true
+    )
+
+    val (hideMusicRecognitionButton, onHideMusicRecognitionButtonChange) = rememberPreference(
+        HideMusicRecognitionButtonKey,
+        defaultValue = false
     )
 
     val (swipeToSong, onSwipeToSongChange) = rememberPreference(
@@ -1471,6 +1477,26 @@ fun AppearanceSettings(
                         )
                     },
                     onClick = { onListenTogetherInTopBarChange(!listenTogetherInTopBar) }
+                ),
+                Material3SettingsItem(
+                    icon = painterResource(R.drawable.mic),
+                    title = { Text(stringResource(R.string.hide_music_recognition_button)) },
+                    trailingContent = {
+                        Switch(
+                            checked = hideMusicRecognitionButton,
+                            onCheckedChange = onHideMusicRecognitionButtonChange,
+                            thumbContent = {
+                                Icon(
+                                    painter = painterResource(
+                                        id = if (hideMusicRecognitionButton) R.drawable.check else R.drawable.close
+                                    ),
+                                    contentDescription = null,
+                                    modifier = Modifier.size(SwitchDefaults.IconSize)
+                                )
+                            }
+                        )
+                    },
+                    onClick = { onHideMusicRecognitionButtonChange(!hideMusicRecognitionButton) }
                 ),
                 Material3SettingsItem(
                     icon = painterResource(R.drawable.grid_view),
