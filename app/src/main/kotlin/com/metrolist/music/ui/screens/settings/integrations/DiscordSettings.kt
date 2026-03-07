@@ -650,7 +650,7 @@ fun DiscordSettings(
                         Material3SettingsItem(
                             title = { Text(stringResource(R.string.discord_button_1)) },
                             description = {
-                                Text(button1Text.ifEmpty { "Listen on YouTube Music" })
+                                Text(button1Text.ifEmpty { stringResource(R.string.listen_on_youtube_music) })
                             },
                             trailingContent = {
                                 Switch(
@@ -663,7 +663,7 @@ fun DiscordSettings(
                         Material3SettingsItem(
                             title = { Text(stringResource(R.string.discord_button_2)) },
                             description = {
-                                Text(button2Text.ifEmpty { "Visit Metrolist" })
+                                Text(button2Text.ifEmpty { stringResource(R.string.visit_metrolist) })
                             },
                             trailingContent = {
                                 Switch(
@@ -880,10 +880,10 @@ fun RichPresence(
             if (button1Visible) {
                 val resolvedButton1 = if (song != null) {
                     DiscordRPC.resolveVariables(
-                        button1Text.ifEmpty { "Listen on YouTube Music" }, song
+                        button1Text.ifEmpty { stringResource(R.string.listen_on_youtube_music) }, song
                     )
                 } else {
-                    button1Text.ifEmpty { "Listen on YouTube Music" }
+                    button1Text.ifEmpty { stringResource(R.string.listen_on_youtube_music) }
                 }
                 OutlinedButton(
                     enabled = song != null,
@@ -903,10 +903,10 @@ fun RichPresence(
             if (button2Visible) {
                 val resolvedButton2 = if (song != null) {
                     DiscordRPC.resolveVariables(
-                        button2Text.ifEmpty { "Visit Metrolist" }, song
+                        button2Text.ifEmpty { stringResource(R.string.visit_metrolist) }, song
                     )
                 } else {
-                    button2Text.ifEmpty { "Visit Metrolist" }
+                    button2Text.ifEmpty { stringResource(R.string.visit_metrolist) }
                 }
                 OutlinedButton(
                     onClick = {
