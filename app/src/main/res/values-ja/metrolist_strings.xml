@@ -550,6 +550,7 @@
     <string name="ai_error_translation_failed">翻訳に失敗しました</string>
     <string name="recognition">音声認識</string>
     <string name="recognize_music">音楽認識</string>
+    <string name="hide_music_recognition_button">音楽認識ボタンを非表示</string>
     <string name="tap_to_recognize">タップして開始</string>
     <string name="listening">聴き取り中…</string>
     <string name="processing">処理中…</string>
