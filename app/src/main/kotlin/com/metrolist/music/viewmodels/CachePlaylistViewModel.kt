@@ -43,7 +43,7 @@ class CachePlaylistViewModel @Inject constructor(
         viewModelScope.launch {
             while (true) {
                 val hideExplicit = context.dataStore.get(HideExplicitKey, false)
-                val hideVideoSongs = context.dataStore.get(HideVideoSongsKey, false)
+                val hideVideoSongs = context.dataStore.get(HideVideoSongsKey, true)
                 val cachedIds = playerCache.keys.toSet()
                 val downloadedIds = downloadCache.keys.toSet()
                 val pureCacheIds = cachedIds.subtract(downloadedIds)

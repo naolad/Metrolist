@@ -53,7 +53,7 @@ constructor(
                     } else {
                         val result = YouTube.searchSuggestions(query).getOrNull()
                         val hideExplicit = context.dataStore.get(HideExplicitKey, false)
-                        val hideVideoSongs = context.dataStore.get(HideVideoSongsKey, false)
+                        val hideVideoSongs = context.dataStore.get(HideVideoSongsKey, true)
 
                         database
                             .searchHistory(query)
