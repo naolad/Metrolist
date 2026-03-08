@@ -10,6 +10,7 @@ import androidx.datastore.preferences.core.floatPreferencesKey
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
+import com.metrolist.music.R
 import java.time.LocalDateTime
 import java.time.ZoneOffset
 
@@ -24,12 +25,12 @@ val MiniPlayerOutlineKey = booleanPreferencesKey("miniPlayerOutline")
 val DensityScaleKey = floatPreferencesKey("density_scale_factor")
 val CustomDensityScaleKey = floatPreferencesKey("custom_density_scale_value")
 
-enum class DensityScale(val value: Float, val label: String) {
-    NATIVE(1.0f, "Native (100%)"),
-    SLIGHTLY_COMPACT(0.85f, "Slightly Compact (85%)"),
-    COMPACT(0.75f, "Compact (75%)"),
-    VERY_COMPACT(0.65f, "Very Compact (65%)"),
-    ULTRA_COMPACT(0.55f, "Ultra Compact (55%)");
+enum class DensityScale(val value: Float, val labelRes: Int) {
+    NATIVE(1.0f, R.string.density_native),
+    SLIGHTLY_COMPACT(0.85f, R.string.density_slightly_compact),
+    COMPACT(0.75f, R.string.density_compact),
+    VERY_COMPACT(0.65f, R.string.density_very_compact),
+    ULTRA_COMPACT(0.55f, R.string.density_ultra_compact);
 
     companion object {
         fun fromValue(value: Float): DensityScale = entries.find { it.value == value } ?: NATIVE
