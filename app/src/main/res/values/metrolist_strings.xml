@@ -820,13 +820,7 @@
     <string name="delete_uploaded_songs_confirm">Are you sure you want to delete %1$d uploaded songs? This cannot be undone.</string>
     <string name="deleted_n_songs">Deleted %1$d songs</string>
     <string name="deleting">Deleting…</string>
-
-    <!-- Stats time transfer -->
-    <string name="time_transfer_title">Time Transfer</string>
-    <string name="time_transfer_warning">WARNING: It is not possible to revert this action once it is completed. A backup file should be created before proceeding. You can only target songs with at least one registered event/play.</string>
-    <string name="time_transfer_source_song">Source song</string>
-    <string name="time_transfer_target_song">Target song</string>
-    <string name="time_transfer_listen_time_label">Listen time: </string>
-    <string name="time_transfer_convert">Convert</string>
-    <string name="song_dropdown_more_results">Type more to narrow results (%d more)</string>
+    <string name="top_result">Top result</string>
+    <string name="listen_on_youtube_music">Listen on YouTube Music</string>
+    <string name="visit_metrolist">Visit Metrolist</string>
 </resources>
