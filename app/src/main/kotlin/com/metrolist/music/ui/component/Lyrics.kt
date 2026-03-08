@@ -773,7 +773,7 @@ fun Lyrics(
                 if (isLyricsProviderShown) {
                     item {
                         Text(
-                            text = "Lyrics from ${lyricsEntity?.provider}",
+                            text = stringResource(R.string.lyrics_from, lyricsEntity?.provider ?: ""),
                             fontSize = 12.sp,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                             fontWeight = FontWeight.Medium,
