@@ -823,4 +823,5 @@
     <string name="top_result">Top result</string>
     <string name="listen_on_youtube_music">Listen on YouTube Music</string>
     <string name="visit_metrolist">Visit Metrolist</string>
+    <string name="lyrics_from">Lyrics from %s</string>
 </resources>
