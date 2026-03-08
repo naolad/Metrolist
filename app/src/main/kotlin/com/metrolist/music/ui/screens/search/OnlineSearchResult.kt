@@ -132,7 +132,7 @@ fun OnlineSearchResult(
     var isSearchFocused by remember { mutableStateOf(false) }
 
     val pauseSearchHistory by rememberPreference(PauseSearchHistoryKey, defaultValue = false)
-    val hideVideoSongs by rememberPreference(HideVideoSongsKey, defaultValue = false)
+    val hideVideoSongs by rememberPreference(HideVideoSongsKey, defaultValue = true)
     val (hideMusicRecognitionButton) = rememberPreference(HideMusicRecognitionButtonKey, defaultValue = false)
 
     BackHandler(enabled = isSearchFocused) {
