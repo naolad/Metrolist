@@ -71,7 +71,7 @@ class ArtistViewModel @Inject constructor(
         locallyBookmarked || (apiState == true)
     }.stateIn(viewModelScope, SharingStarted.Eagerly, false)
     val librarySongs = context.dataStore.data
-        .map { (it[HideExplicitKey] ?: false) to (it[HideVideoSongsKey] ?: false) }
+        .map { (it[HideExplicitKey] ?: false) to (it[HideVideoSongsKey] ?: true) }
         .distinctUntilChanged()
         .flatMapLatest { (hideExplicit, hideVideoSongs) ->
             database.artistSongsPreview(artistId).map { it.filterExplicit(hideExplicit).filterVideoSongsLocal(hideVideoSongs) }
@@ -92,7 +92,7 @@ class ArtistViewModel @Inject constructor(
                 .map {
                     Triple(
                         it[HideExplicitKey] ?: false,
-                        it[HideVideoSongsKey] ?: false,
+                        it[HideVideoSongsKey] ?: true,
                         it[HideYoutubeShortsKey] ?: false
                     )
                 }
@@ -106,7 +106,7 @@ class ArtistViewModel @Inject constructor(
     fun fetchArtistsFromYTM() {
         viewModelScope.launch {
             val hideExplicit = context.dataStore.get(HideExplicitKey, false)
-            val hideVideoSongs = context.dataStore.get(HideVideoSongsKey, false)
+            val hideVideoSongs = context.dataStore.get(HideVideoSongsKey, true)
             val hideYoutubeShorts = context.dataStore.get(HideYoutubeShortsKey, false)
             YouTube.artist(artistId)
                 .onSuccess { page ->

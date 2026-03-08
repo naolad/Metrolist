@@ -89,7 +89,7 @@ constructor(
                         (it[SongSortDescendingKey] ?: true),
                     ),
                     it[HideExplicitKey] ?: false,
-                    it[HideVideoSongsKey] ?: false
+                    it[HideVideoSongsKey] ?: true
                 )
             }.distinctUntilChanged()
             .flatMapLatest { (filterSort, hideExplicit, hideVideoSongs) ->
@@ -277,7 +277,7 @@ constructor(
                     it[ArtistSongSortTypeKey].toEnum(ArtistSongSortType.CREATE_DATE) to (it[ArtistSongSortDescendingKey]
                         ?: true),
                     it[HideExplicitKey] ?: false,
-                    it[HideVideoSongsKey] ?: false
+                    it[HideVideoSongsKey] ?: true
                 )
             }.distinctUntilChanged()
             .flatMapLatest { (sortDesc, hideExplicit, hideVideoSongs) ->

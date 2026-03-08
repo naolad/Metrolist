@@ -56,7 +56,7 @@ constructor(
                     it[SongSortTypeKey].toEnum(SongSortType.CREATE_DATE) to (it[SongSortDescendingKey]
                         ?: true),
                     it[HideExplicitKey] ?: false,
-                    it[HideVideoSongsKey] ?: false
+                    it[HideVideoSongsKey] ?: true
                 )
             }
             .distinctUntilChanged()
