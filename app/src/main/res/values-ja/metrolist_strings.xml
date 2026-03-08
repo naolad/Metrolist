@@ -822,4 +822,10 @@
     <string name="density_compact">小さい (75%)</string>
     <string name="density_very_compact">かなり小さい (65%)</string>
     <string name="density_ultra_compact">最小 (55%)</string>
+    <string name="listen_together_joined_room">ルームに参加しました: %s</string>
+    <string name="listen_together_join_rejected">参加が拒否されました: %s</string>
+    <string name="listen_together_kicked">キックされました: %s</string>
+    <string name="listen_together_connection_error">接続エラー: %s</string>
+    <string name="listen_together_error_message">エラー: %s</string>
+    <string name="listen_together_wants_to_join">%sが参加しようとしています</string>
 </resources>

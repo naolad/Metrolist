@@ -829,4 +829,10 @@
     <string name="density_compact">Compact (75%)</string>
     <string name="density_very_compact">Very Compact (65%)</string>
     <string name="density_ultra_compact">Ultra Compact (55%)</string>
+    <string name="listen_together_joined_room">Joined room: %s</string>
+    <string name="listen_together_join_rejected">Join rejected: %s</string>
+    <string name="listen_together_kicked">Kicked: %s</string>
+    <string name="listen_together_connection_error">Connection error: %s</string>
+    <string name="listen_together_wants_to_join">%s wants to join</string>
+    <string name="listen_together_error_message">Error: %s</string>
 </resources>
