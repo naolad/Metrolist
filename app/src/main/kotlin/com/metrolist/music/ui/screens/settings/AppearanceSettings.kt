@@ -685,7 +685,7 @@ fun AppearanceSettings(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = scale.label,
+                            text = stringResource(scale.labelRes),
                             style = MaterialTheme.typography.bodyLarge,
                             color = if (densityScale == scale.value) {
                                 MaterialTheme.colorScheme.primary
@@ -1513,7 +1513,7 @@ fun AppearanceSettings(
                     icon = painterResource(R.drawable.grid_view),
                     title = { Text(stringResource(R.string.display_density)) },
                     description = {
-                        Text(DensityScale.fromValue(densityScale).label)
+                        Text(stringResource(DensityScale.fromValue(densityScale).labelRes))
                     },
                     onClick = { showDensityScaleDialog = true }
                 )
