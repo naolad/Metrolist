@@ -824,4 +824,9 @@
     <string name="listen_on_youtube_music">Listen on YouTube Music</string>
     <string name="visit_metrolist">Visit Metrolist</string>
     <string name="lyrics_from">Lyrics from %s</string>
+    <string name="density_native">Native (100%)</string>
+    <string name="density_slightly_compact">Slightly Compact (85%)</string>
+    <string name="density_compact">Compact (75%)</string>
+    <string name="density_very_compact">Very Compact (65%)</string>
+    <string name="density_ultra_compact">Ultra Compact (55%)</string>
 </resources>

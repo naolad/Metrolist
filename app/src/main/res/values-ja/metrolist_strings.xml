@@ -817,4 +817,9 @@
     <string name="export_option_title">プレイリストをどの形式でエクスポートしますか？</string>
     <string name="qs_tile_music_recognizer">音楽を認識</string>
     <string name="lyrics_from">歌詞提供: %s</string>
+    <string name="density_native">標準 (100%)</string>
+    <string name="density_slightly_compact">やや小さい (85%)</string>
+    <string name="density_compact">小さい (75%)</string>
+    <string name="density_very_compact">かなり小さい (65%)</string>
+    <string name="density_ultra_compact">最小 (55%)</string>
 </resources>
