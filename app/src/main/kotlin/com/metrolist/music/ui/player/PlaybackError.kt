@@ -100,7 +100,7 @@ fun PlaybackError(
         
         // Error code
         Text(
-            text = "Code: ${getErrorCodeName(error.errorCode)} (${error.errorCode})",
+            text = stringResource(R.string.playback_error_code, getErrorCodeName(error.errorCode), error.errorCode),
             style = MaterialTheme.typography.bodySmall.copy(
                 fontFamily = FontFamily.Monospace,
                 fontSize = 11.sp

@@ -837,4 +837,5 @@
     <string name="listen_together_wants_to_join">%s wants to join</string>
     <string name="listen_together_error_message">Error: %s</string>
     <string name="csv_preview_failed">Failed to preview CSV file</string>
+    <string name="playback_error_code">Code: %s (%d)</string>
 </resources>
