@@ -816,4 +816,5 @@
     <string name="export_option_save">ドキュメントに保存</string>
     <string name="export_option_title">プレイリストをどの形式でエクスポートしますか？</string>
     <string name="qs_tile_music_recognizer">音楽を認識</string>
+    <string name="lyrics_from">歌詞提供: %s</string>
 </resources>
