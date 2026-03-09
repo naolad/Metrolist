@@ -1289,7 +1289,7 @@ fun HomeScreen(
                         sectionData?.let {
                             item(key = "1_chip_section_title_${section.index}") {
                                 NavigationTitle(
-                                    title = sectionData.title.replace("再生リスト", "プレイリスト"),
+                                    title = sectionData.title.replace("再生リスト", "プレイリスト").replace("最近聞いていないお気に入り", "最近聴いていないお気に入り"),
                                     label = sectionData.label,
                                     thumbnail =
                                         sectionData.thumbnail?.let { thumbnailUrl ->
@@ -2227,7 +2227,7 @@ fun HomeScreen(
 
                                 item(key = "home_section_title_${section.index}") {
                                     NavigationTitle(
-                                        title = sectionData.title.replace("再生リスト", "プレイリスト"),
+                                        title = sectionData.title.replace("再生リスト", "プレイリスト").replace("最近聞いていないお気に入り", "最近聴いていないお気に入り"),
                                         label = sectionData.label,
                                         thumbnail =
                                             sectionData.thumbnail?.let { thumbnailUrl ->
@@ -2281,7 +2281,7 @@ fun HomeScreen(
                                                 {
                                                     playerConnection.playQueue(
                                                         ListQueue(
-                                                            title = sectionData.title.replace("再生リスト", "プレイリスト"),
+                                                            title = sectionData.title.replace("再生リスト", "プレイリスト").replace("最近聞いていないお気に入り", "最近聴いていないお気に入り"),
                                                             items = sectionSongs.map { it.toMediaMetadata().toMediaItem() },
                                                         ),
                                                     )
