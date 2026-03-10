@@ -123,8 +123,8 @@ fun AlbumScreen(
     val playlistId by viewModel.playlistId.collectAsState()
     val albumWithSongs by viewModel.albumWithSongs.collectAsState()
     val otherVersions by viewModel.otherVersions.collectAsState()
-    val hideExplicit by rememberPreference(key = HideExplicitKey, defaultValue = false)
-    val hideVideoSongs by rememberPreference(key = HideVideoSongsKey, defaultValue = false)
+    val hideExplicit by rememberPreference(key = HideExplicitKey, defaultValue = true)
+    val hideVideoSongs by rememberPreference(key = HideVideoSongsKey, defaultValue = true)
 
     val filteredSongs =
         remember(albumWithSongs, hideExplicit, hideVideoSongs) {
