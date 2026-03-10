@@ -1910,10 +1910,11 @@ object YouTube {
         data: ByteArray,
         onProgress: ((Float) -> Unit)? = null
     ): Result<Boolean> = runCatching {
+        val mimeType = getMimeType(filename)
         onProgress?.invoke(0f)
 
         // Step 1: Initialize upload (5% of progress)
-        val initResponse = innerTube.initSongUpload(filename, data.size.toLong())
+        val initResponse = innerTube.initSongUpload(filename, data.size.toLong(), mimeType)
         val uploadUrl = initResponse.headers["X-Goog-Upload-URL"]
             ?: throw Exception("Failed to get upload URL")
 
@@ -1923,6 +1924,7 @@ object YouTube {
         val uploadResponse = innerTube.uploadSongData(
             uploadUrl = uploadUrl,
             data = data,
+            mimeType = mimeType,
             onProgress = { uploadProgress ->
                 // Map upload progress (0-1) to overall progress (0.05-1.0)
                 onProgress?.invoke(0.05f + uploadProgress * 0.95f)
@@ -1947,6 +1949,17 @@ object YouTube {
      * Supported file types for upload
      */
     val SUPPORTED_UPLOAD_TYPES = listOf("mp3", "m4a", "wma", "flac", "ogg")
+
+    fun getMimeType(filename: String): String = when (
+        filename.substringAfterLast('.', "").lowercase()
+    ) {
+        "mp3"  -> "audio/mpeg"
+        "m4a"  -> "audio/mp4"
+        "wma"  -> "audio/x-ms-wma"
+        "flac" -> "audio/flac"
+        "ogg"  -> "audio/ogg"
+        else   -> "audio/mpeg"
+    }
 
     /**
      * Maximum file size for upload (300MB)

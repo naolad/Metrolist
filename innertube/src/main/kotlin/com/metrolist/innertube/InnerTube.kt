@@ -710,7 +710,8 @@ class InnerTube {
      */
     suspend fun initSongUpload(
         filename: String,
-        contentLength: Long
+        contentLength: Long,
+        mimeType: String = "audio/mpeg"
     ) = withRetry {
         val authUser = "0"
         httpClient.post("https://upload.youtube.com/upload/usermusic/http?authuser=$authUser") {
@@ -718,6 +719,7 @@ class InnerTube {
                 append("X-Goog-Upload-Command", "start")
                 append("X-Goog-Upload-Protocol", "resumable")
                 append("X-Goog-Upload-Header-Content-Length", contentLength.toString())
+                append("X-Goog-Upload-Header-Content-Type", mimeType)
                 append("X-Goog-AuthUser", authUser)
                 append("Origin", YouTubeClient.ORIGIN_YOUTUBE_MUSIC)
                 cookie?.let { cookie ->
@@ -739,6 +741,7 @@ class InnerTube {
     suspend fun uploadSongData(
         uploadUrl: String,
         data: ByteArray,
+        mimeType: String = "audio/mpeg",
         onProgress: ((Float) -> Unit)? = null
     ) = withRetry {
         httpClient.post(uploadUrl) {
@@ -755,7 +758,7 @@ class InnerTube {
                     append("Authorization", "SAPISIDHASH ${currentTime}_${sapisidHash}")
                 }
             }
-            contentType(ContentType.Application.FormUrlEncoded)
+            contentType(ContentType.parse(mimeType))
             setBody(data)
             onUpload { bytesSentTotal, contentLength ->
                 contentLength?.let {
