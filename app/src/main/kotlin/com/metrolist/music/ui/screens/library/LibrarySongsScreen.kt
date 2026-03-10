@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Metrolist Project (C) 2026
  * Licensed under GPL-3.0 | See git history for contributors
  */
@@ -147,7 +147,11 @@ fun LibrarySongsScreen(
                             uploadProgress = 0f
 
                             try {
-                                val fileName = uri.lastPathSegment?.substringAfterLast('/') ?: "unknown"
+                                val fileName = context.contentResolver.query(
+                                    uri, arrayOf(android.provider.OpenableColumns.DISPLAY_NAME), null, null, null
+                                )?.use { cursor ->
+                                    if (cursor.moveToFirst()) cursor.getString(0) else null
+                                } ?: uri.lastPathSegment?.substringAfterLast('/') ?: "unknown"
                                 currentFileName = fileName
                                 val extension = fileName.substringAfterLast('.', "").lowercase()
 
