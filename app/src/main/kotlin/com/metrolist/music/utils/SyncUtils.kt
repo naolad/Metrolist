@@ -765,7 +765,7 @@ class SyncUtils @Inject constructor(
         updateState { copy(uploadedSongs = SyncStatus.Syncing, currentOperation = "Syncing uploaded songs") }
 
         withRetry {
-            // Uploaded songs are in Tab 1 ("Uploads"), not Tab 0 ("Library")
+            // FEmusic_library_privately_owned_tracks is the uploads endpoint itself (single tab)
             YouTube.library("FEmusic_library_privately_owned_tracks", tabIndex = 0).completed()
         }.onSuccess { result ->
             result.onSuccess { page ->
