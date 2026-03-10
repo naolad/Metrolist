@@ -766,7 +766,7 @@ class SyncUtils @Inject constructor(
 
         withRetry {
             // Uploaded songs are in Tab 1 ("Uploads"), not Tab 0 ("Library")
-            YouTube.library("FEmusic_library_privately_owned_tracks", tabIndex = 1).completed()
+            YouTube.library("FEmusic_library_privately_owned_tracks", tabIndex = 0).completed()
         }.onSuccess { result ->
             result.onSuccess { page ->
                 try {
