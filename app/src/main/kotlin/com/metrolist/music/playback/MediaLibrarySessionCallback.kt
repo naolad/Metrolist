@@ -340,7 +340,7 @@ constructor(
                                     val songs = YouTube.playlist(playlistId).getOrNull()?.songs
                                         ?.take(100)
                                         ?.filterExplicit(context.dataStore.get(HideExplicitKey, false))
-                                        ?.filterVideoSongs(context.dataStore.get(HideVideoSongsKey, false))
+                                        ?.filterVideoSongs(context.dataStore.get(HideVideoSongsKey, true))
                                         ?: emptyList()
 
                                     // Add shuffle item at the top
@@ -457,7 +457,7 @@ constructor(
                         ?.items
                         ?.filterIsInstance<SongItem>()
                         ?.filterExplicit(context.dataStore.get(HideExplicitKey, false))
-                        ?.filterVideoSongs(context.dataStore.get(HideVideoSongsKey, false))
+                        ?.filterVideoSongs(context.dataStore.get(HideVideoSongsKey, true))
                         ?.filter { onlineSong ->
                             !allLocalSongs.any { localSong ->
                                 localSong.id == onlineSong.id ||
@@ -657,7 +657,7 @@ constructor(
                             ?.items
                             ?.filterIsInstance<SongItem>()
                             ?.filterExplicit(context.dataStore.get(HideExplicitKey, false))
-                            ?.filterVideoSongs(context.dataStore.get(HideVideoSongsKey, false))
+                            ?.filterVideoSongs(context.dataStore.get(HideVideoSongsKey, true))
                             ?.filter { onlineSong ->
                                 !allLocalSongs.any { localSong ->
                                     localSong.id == onlineSong.id ||
