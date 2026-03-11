@@ -922,11 +922,25 @@ object YouTube {
                 setLogin = true
             ).body<BrowseResponse>()
 
-            val tabs = response.contents?.singleColumnBrowseResultsRenderer?.tabs
-            val contents = if (tabs != null && tabs.size > tabIndex) {
-                tabs[tabIndex].tabRenderer.content?.sectionListRenderer?.contents?.firstOrNull()
-            } else {
-                null
+            // Some endpoints (e.g. FEmusic_library_privately_owned_tracks) return content
+            // directly in sectionListRenderer without a tab wrapper.
+            val contents = when {
+                response.contents?.singleColumnBrowseResultsRenderer != null -> {
+                    val tabs = response.contents.singleColumnBrowseResultsRenderer.tabs
+                    if (tabs != null && tabs.size > tabIndex)
+                        tabs[tabIndex].tabRenderer.content?.sectionListRenderer?.contents?.firstOrNull()
+                    else null
+                }
+                response.contents?.sectionListRenderer != null -> {
+                    response.contents.sectionListRenderer.contents.firstOrNull()
+                }
+                response.contents?.twoColumnBrowseResultsRenderer != null -> {
+                    val tabs = response.contents.twoColumnBrowseResultsRenderer.tabs
+                    if (tabs != null && tabs.size > tabIndex)
+                        tabs[tabIndex]?.tabRenderer?.content?.sectionListRenderer?.contents?.firstOrNull()
+                    else null
+                }
+                else -> null
             }
 
             when {
