@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Metrolist Project (C) 2026
  * Licensed under GPL-3.0 | See git history for contributors
  */
@@ -229,8 +229,13 @@ fun LibrarySongsScreen(
 
                             showUploadDialog = false
 
-                            // Refresh uploaded songs
-                            viewModel.syncUploadedSongs()
+                            // Poll until YouTube processes the upload (can take several minutes)
+                            var pollAttempt = 0
+                            while (pollAttempt < 20) {
+                                viewModel.syncUploadedSongs()
+                                kotlinx.coroutines.delay(15_000L)
+                                pollAttempt++
+                            }
                         } else {
                             showUploadDialog = false
                         }
