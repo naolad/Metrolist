@@ -932,7 +932,7 @@ object YouTube {
                     else null
                 }
                 response.contents?.sectionListRenderer != null -> {
-                    response.contents.sectionListRenderer.contents.firstOrNull()
+                    response.contents?.sectionListRenderer?.contents?.firstOrNull()
                 }
                 response.contents?.twoColumnBrowseResultsRenderer != null -> {
                     val tabs = response.contents.twoColumnBrowseResultsRenderer.tabs
