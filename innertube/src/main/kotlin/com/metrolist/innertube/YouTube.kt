@@ -957,6 +957,7 @@ object YouTube {
 
                 else -> {
                     val shelfContents = contents?.musicShelfRenderer?.contents
+                        ?: contents?.musicPlaylistShelfRenderer?.contents
                     if (shelfContents == null) {
                         throw IllegalStateException("No content found for browseId=$browseId")
                     }
