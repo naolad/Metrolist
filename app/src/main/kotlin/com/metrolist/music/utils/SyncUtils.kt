@@ -805,7 +805,7 @@ class SyncUtils @Inject constructor(
                     }
 
                     updateState { copy(uploadedSongs = SyncStatus.Completed) }
-                    Timber.d("Synced ${remoteSongs.size} uploaded songs")
+                    Timber.d("[sync] remoteSongs=${remoteSongs.size} page.items=${page.items.size}")
                 } catch (e: Exception) {
                     Timber.e(e, "Error processing uploaded songs")
                     updateState { copy(uploadedSongs = SyncStatus.Error(e.message ?: "Unknown error")) }
