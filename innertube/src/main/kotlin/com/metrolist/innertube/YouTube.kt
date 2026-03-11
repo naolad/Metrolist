@@ -967,7 +967,7 @@ object YouTube {
                     }
                     LibraryPage(
                         items = parsedItems,
-                        continuation = contents.musicShelfRenderer.continuations?.getContinuation()
+                        continuation = contents?.musicShelfRenderer?.continuations?.getContinuation() ?: contents?.musicPlaylistShelfRenderer?.continuations?.getContinuation()
                     )
                 }
             }
