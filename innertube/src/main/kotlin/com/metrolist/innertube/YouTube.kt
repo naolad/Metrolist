@@ -924,7 +924,10 @@ object YouTube {
 
             // Some endpoints (e.g. FEmusic_library_privately_owned_tracks) return content
             // directly in sectionListRenderer without a tab wrapper.
-            Timber.d("[library] browseId=$browseId singleCol=${response.contents?.singleColumnBrowseResultsRenderer != null} sectionList=${response.contents?.sectionListRenderer != null} twoCol=${response.contents?.twoColumnBrowseResultsRenderer != null}")
+            val scbr = response.contents?.singleColumnBrowseResultsRenderer
+            val tabsSize = scbr?.tabs?.size ?: -1
+            val tab0content = if (tabsSize > 0) scbr?.tabs?.get(0)?.tabRenderer?.content else null
+            Timber.d("[library] browseId=$browseId singleCol=${scbr != null} tabsSize=$tabsSize tab0content=${tab0content != null} sectionList=${tab0content?.sectionListRenderer != null}")
             val contents = when {
                 response.contents?.singleColumnBrowseResultsRenderer != null -> {
                     val tabs = response.contents.singleColumnBrowseResultsRenderer.tabs
