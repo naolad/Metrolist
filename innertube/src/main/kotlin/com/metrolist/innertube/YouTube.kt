@@ -947,8 +947,8 @@ object YouTube {
                 else -> null
             }
 
-            val allTypes = tabs?.getOrNull(tabIndex)?.tabRenderer?.content?.sectionListRenderer?.contents?.mapIndexed { i, c -> "[$i]: shelf=${c.musicShelfRenderer != null} grid=${c.gridRenderer != null} playlist=${c.musicPlaylistShelfRenderer != null} carousel=${c.musicCarouselShelfRenderer != null}" }?.joinToString()
-            Timber.d("[library] contents breakdown: $allTypes")
+            val allTypes = scbr?.tabs?.getOrNull(tabIndex)?.tabRenderer?.content?.sectionListRenderer?.contents?.mapIndexed { i: Int, c: com.metrolist.innertube.models.SectionListRenderer.Content -> "[$i]:shelf=${c.musicShelfRenderer != null},grid=${c.gridRenderer != null},playlist=${c.musicPlaylistShelfRenderer != null}" }?.joinToString()
+            Timber.d("[library] breakdown: $allTypes")
             when {
                 contents?.gridRenderer != null -> {
                     val gridItems = contents.gridRenderer.items
