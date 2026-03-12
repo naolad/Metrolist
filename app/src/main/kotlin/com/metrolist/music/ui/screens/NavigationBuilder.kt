@@ -345,7 +345,7 @@ fun NavGraphBuilder.navigationBuilder(
     }
 
     composable("settings/appearance") {
-        AppearanceSettings(navController, activity, snackbarHostState)
+        AppearanceSettings(navController, activity)
     }
 
     composable("settings/appearance/theme") {
