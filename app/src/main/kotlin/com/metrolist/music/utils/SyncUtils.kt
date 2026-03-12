@@ -766,7 +766,7 @@ class SyncUtils @Inject constructor(
 
         withRetry {
             // FEmusic_library_privately_owned_tracks is the uploads endpoint itself (single tab)
-            YouTube.library("FEmusic_library_privately_owned_tracks", tabIndex = 0).completed()
+            YouTube.library("FEmusic_library_privately_owned_tracks", tabIndex = 1).completed()
         }.onSuccess { result ->
             result.onSuccess { page ->
                 try {
