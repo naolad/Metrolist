@@ -23,7 +23,7 @@ data class LibraryPage(
         fun fromMusicTwoRowItemRenderer(renderer: MusicTwoRowItemRenderer): YTItem? {
             return when {
                 // Uploaded songs appear as albums in grid but have a direct watchEndpoint
-                renderer.thumbnailOverlay?.musicItemThumbnailOverlayRenderer?.content?.musicPlayButtonRenderer?.playNavigationEndpoint?.watchEndpoint != null && renderer.isAlbum -> {
+                renderer.also { r -> if (r.isAlbum) timber.log.Timber.d("[LibraryPage] isAlbum title=${r.title.runs?.firstOrNull()?.text} hasOverlay=${r.thumbnailOverlay != null} hasWatch=${r.thumbnailOverlay?.musicItemThumbnailOverlayRenderer?.content?.musicPlayButtonRenderer?.playNavigationEndpoint?.watchEndpoint != null}") }.thumbnailOverlay?.musicItemThumbnailOverlayRenderer?.content?.musicPlayButtonRenderer?.playNavigationEndpoint?.watchEndpoint != null && renderer.isAlbum -> {
                     val videoId = renderer.thumbnailOverlay!!.musicItemThumbnailOverlayRenderer!!.content!!.musicPlayButtonRenderer!!.playNavigationEndpoint!!.watchEndpoint!!.videoId ?: return null
                     SongItem(
                         id = videoId,
