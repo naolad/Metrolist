@@ -968,6 +968,7 @@ object YouTube {
                 else -> {
                     val shelfContents = contents?.musicShelfRenderer?.contents
                         ?: contents?.musicPlaylistShelfRenderer?.contents
+                        ?: contents?.itemSectionRenderer?.contents?.firstOrNull()?.musicShelfRenderer?.contents
                     if (shelfContents == null) {
                         return@runCatching LibraryPage(items = emptyList(), continuation = null)
                     }
