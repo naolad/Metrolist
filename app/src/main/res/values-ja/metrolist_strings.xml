@@ -23,6 +23,8 @@
     <string name="offline">ダウンロード済み</string>
     <string name="top_music_videos">人気のミュージックビデオ</string>
     <string name="my_top">マイトップ</string>
+    <string name="weekly_most_playlist_name">今週の人気</string>
+    <string name="monthly_most_playlist_name">今月の人気</string>
     <string name="cached_playlist">キャッシュ済み</string>
     <string name="sync_playlist">プレイリストを同期</string>
     <string name="sync_disabled">同期は無効です</string>
@@ -55,6 +57,8 @@
     <string name="slim">スリム</string>
     <string name="similar_content">似た曲</string>
     <string name="show_cached_playlist">キャッシュした曲のプレイリストを表示</string>
+    <string name="enable_song_cache">曲をキャッシュする</string>
+    <string name="enable_song_cache_desc">今後の再生のために曲を自動でキャッシュします</string>
     <string name="google">Google</string>
     <string name="discord">Discord</string>
     <string name="auto_playlists">自動プレイリスト</string>
@@ -188,7 +192,7 @@
     <string name="lyrics_romanize_kyrgyz">キルギス語の歌詞にローマ字を追加</string>
     <string name="lyrics_romanize_serbian">セルビア語の歌詞にローマ字を追加</string>
     <string name="lyrics_romanize_bulgarian">ブルガリア語の歌詞にローマ字を追加</string>
-    <string name="line_by_line_option_title">行ごとに言語を判別(実験的)</string>
+    <string name="line_by_line_option_title">行ごとに言語を判別</string>
     <string name="line_by_line_option_desc">キリル文字の言語は、曲全体ではなく行ごとに判別されます。</string>
     <string name="line_by_line_dialog_title">確認</string>
     <string name="line_by_line_dialog_desc">この機能は実験的で、動作が不安定になる場合があります。\n通常、言語は曲全体から判別されますが、この設定をオンにすると行ごとに判別されます。複数の言語が混在する曲に対応できますが、判別結果が常に正しいとは限りません（例：ウクライナ語特有の文字が含まれていない歌詞は、ロシア語として判別される場合があります）。\n問題がない場合は、この設定はオフにすることをおすすめします。</string>
@@ -786,6 +790,10 @@
     <string name="sleep_timer_friday">金曜日</string>
     <string name="sleep_timer_saturday">土曜日</string>
     <string name="sleep_timer_sunday">日曜日</string>
+    <string name="sleep_timer_stop_after_current_song_title">この曲の終了後に停止</string>
+    <string name="sleep_timer_stop_after_current_song_description">現在再生中の曲が終わるとスリープタイマーを停止します</string>
+    <string name="sleep_timer_fade_out_title">フェードアウト</string>
+    <string name="sleep_timer_fade_out_description">終了1分前から音量を徐々に下げます</string>
     <string name="sleep_timer_stop_after_current_song">タイマー終了時のときの曲が終わってから停止</string>
     <string name="sleep_timer_fade_out">終了前の1分間でフェードアウト</string>
     <string name="saved_locally">アカウントが見つからないため、ローカルに保存します</string>
