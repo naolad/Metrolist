@@ -969,7 +969,7 @@ object YouTube {
                     val shelfContents = contents?.musicShelfRenderer?.contents
                         ?: contents?.musicPlaylistShelfRenderer?.contents
                     if (shelfContents == null) {
-                        throw IllegalStateException("No content found for browseId=$browseId")
+                        return@runCatching LibraryPage(items = emptyList(), continuation = null)
                     }
                     val listItemRenderers = shelfContents.mapNotNull(MusicShelfRenderer.Content::musicResponsiveListItemRenderer)
                     val parsedItems = listItemRenderers.mapNotNull { renderer ->
