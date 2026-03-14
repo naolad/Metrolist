@@ -22,6 +22,21 @@ data class LibraryPage(
     companion object {
         fun fromMusicTwoRowItemRenderer(renderer: MusicTwoRowItemRenderer): YTItem? {
             return when {
+                // Uploaded songs appear as albums in grid but have a direct watchEndpoint
+                renderer.thumbnailOverlay?.musicItemThumbnailOverlayRenderer?.content?.musicPlayButtonRenderer?.playNavigationEndpoint?.watchEndpoint != null && renderer.isAlbum -> {
+                    val videoId = renderer.thumbnailOverlay!!.musicItemThumbnailOverlayRenderer!!.content!!.musicPlayButtonRenderer!!.playNavigationEndpoint!!.watchEndpoint!!.videoId ?: return null
+                    SongItem(
+                        id = videoId,
+                        title = renderer.title.runs?.firstOrNull()?.text ?: return null,
+                        artists = parseArtists(renderer.subtitle?.runs),
+                        album = null,
+                        duration = null,
+                        thumbnail = renderer.thumbnailRenderer.musicThumbnailRenderer?.getThumbnailUrl() ?: return null,
+                        explicit = false,
+                        endpoint = renderer.thumbnailOverlay!!.musicItemThumbnailOverlayRenderer!!.content!!.musicPlayButtonRenderer!!.playNavigationEndpoint!!.watchEndpoint,
+                    )
+                }
+
                 renderer.isAlbum -> AlbumItem(
                     browseId = renderer.navigationEndpoint.browseEndpoint?.browseId ?: return null,
                     playlistId = renderer.thumbnailOverlay?.musicItemThumbnailOverlayRenderer?.content
