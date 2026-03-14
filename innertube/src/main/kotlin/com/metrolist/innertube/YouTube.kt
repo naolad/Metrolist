@@ -916,11 +916,16 @@ object YouTube {
 
     suspend fun library(browseId: String, tabIndex: Int = 0): Result<LibraryPage> {
         return runCatching {
-            val response = innerTube.browse(
+            val rawBody = innerTube.browse(
                 client = WEB_REMIX,
                 browseId = browseId,
                 setLogin = true
-            ).body<BrowseResponse>()
+            )
+            if (browseId == "FEmusic_library_privately_owned_tracks") {
+                val rawText = rawBody.bodyAsText()
+                Timber.d("[library] RAW(first500): ${rawText.take(500)}")
+            }
+            val response = rawBody.body<BrowseResponse>()
 
             // Some endpoints (e.g. FEmusic_library_privately_owned_tracks) return content
             // directly in sectionListRenderer without a tab wrapper.
