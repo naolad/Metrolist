@@ -923,7 +923,7 @@ object YouTube {
             )
             if (browseId == "FEmusic_library_privately_owned_tracks") {
                 val rawText = rawBody.bodyAsText()
-                Timber.d("[library] RAW(first500): ${rawText.take(2000)}")
+                Timber.d("[library] RAW(first500): ${rawText.substring(minOf(1800, rawText.length))}")
             }
             val response = rawBody.body<BrowseResponse>()
 
