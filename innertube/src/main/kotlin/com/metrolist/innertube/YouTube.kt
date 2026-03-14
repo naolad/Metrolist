@@ -952,7 +952,7 @@ object YouTube {
                 else -> null
             }
 
-            scbr?.tabs?.forEachIndexed { ti: Int, tab: com.metrolist.innertube.models.Tabs.Tab -> tab.tabRenderer.content?.sectionListRenderer?.contents?.forEachIndexed { ci: Int, c: com.metrolist.innertube.models.SectionListRenderer.Content -> Timber.d("[library] tab$ti/$ci: shelf=${c.musicShelfRenderer != null} grid=${c.gridRenderer != null} playlist=${c.musicPlaylistShelfRenderer != null} carousel=${c.musicCarouselShelfRenderer != null} header=${c.musicResponsiveHeaderRenderer != null}") } }
+            scbr?.tabs?.forEachIndexed { ti: Int, tab: com.metrolist.innertube.models.Tabs.Tab -> val tcon = tab.tabRenderer.content; Timber.d("[library] tab$ti: content=${tcon != null} sectionList=${tcon?.sectionListRenderer != null} items=${tcon?.sectionListRenderer?.contents?.size}"); tcon?.sectionListRenderer?.contents?.forEachIndexed { ci: Int, c: com.metrolist.innertube.models.SectionListRenderer.Content -> Timber.d("[library] tab$ti/$ci: shelf=${c.musicShelfRenderer != null} grid=${c.gridRenderer != null} playlist=${c.musicPlaylistShelfRenderer != null} carousel=${c.musicCarouselShelfRenderer != null} header=${c.musicResponsiveHeaderRenderer != null} itemSection=${c.musicCardShelfRenderer != null}") } }
             when {
                 contents?.gridRenderer != null -> {
                     val gridItems = contents.gridRenderer.items
