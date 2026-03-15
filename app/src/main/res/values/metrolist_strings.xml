@@ -838,4 +838,11 @@
     <string name="listen_together_error_message">Error: %s</string>
     <string name="csv_preview_failed">Failed to preview CSV file</string>
     <string name="playback_error_code">Code: %s (%d)</string>
+    <string name="song_dropdown_more_results">More results</string>
+    <string name="time_transfer_title">Transfer Listen Time</string>
+    <string name="time_transfer_warning">This action cannot be undone</string>
+    <string name="time_transfer_source_song">Source song</string>
+    <string name="time_transfer_listen_time_label">Listen time</string>
+    <string name="time_transfer_target_song">Target song</string>
+    <string name="time_transfer_convert">Transfer</string>
 </resources>
