@@ -112,7 +112,12 @@ data class AlbumPage(
                     it.musicInlineBadgeRenderer?.icon?.iconType == "MUSIC_EXPLICIT_BADGE"
                 } != null,
                 libraryAddToken = libraryTokens.addToken,
-                libraryRemoveToken = libraryTokens.removeToken
+                libraryRemoveToken = libraryTokens.removeToken,
+                uploadEntityId = renderer.menu?.menuRenderer?.items?.firstNotNullOfOrNull { item ->
+                    item.menuNavigationItemRenderer?.navigationEndpoint?.confirmDialogEndpoint
+                        ?.content?.confirmDialogRenderer?.confirmButton?.buttonRenderer
+                        ?.command?.musicDeletePrivatelyOwnedEntityCommand?.entityId
+                }
             )
         }
     }
