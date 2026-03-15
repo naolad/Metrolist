@@ -779,6 +779,7 @@ class SyncUtils @Inject constructor(
                     val remoteSongs = (page.items.filterIsInstance<SongItem>() + songsFromAlbums).reversed()
                     val remoteIds = remoteSongs.map { it.id }.toSet()
                     val localSongs = database.uploadedSongsByNameAsc().first()
+                    Timber.d("[db] uploadedSongs in DB: ${localSongs.size} ids=${localSongs.map{it.id}}")
 
                     // Remove uploaded flag from songs no longer in remote
                     localSongs.filterNot { it.id in remoteIds }.forEach { song ->
