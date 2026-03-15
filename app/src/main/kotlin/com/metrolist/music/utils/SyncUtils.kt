@@ -797,11 +797,12 @@ class SyncUtils @Inject constructor(
                             database.transaction {
                                 if (dbSong == null) {
                                     insert(song.toMediaMetadata()) { it.toggleUploaded() }
+                                    Timber.d("[insert] inserted id=${song.id} title=${song.title} isUploaded=true")
                                 } else if (!dbSong.song.isUploaded) {
                                     update(dbSong.song.copy(isUploaded = true, uploadEntityId = song.uploadEntityId))
-                                } else if (dbSong.song.uploadEntityId != song.uploadEntityId && song.uploadEntityId != null) {
-                                    // Update uploadEntityId if it differs from remote
-                                    update(dbSong.song.copy(uploadEntityId = song.uploadEntityId))
+                                    Timber.d("[insert] updated id=${song.id} isUploaded=true")
+                                } else {
+                                    Timber.d("[insert] already exists id=${song.id} isUploaded=${dbSong.song.isUploaded}")
                                 }
                             }
                             delay(DB_OPERATION_DELAY_MS)
