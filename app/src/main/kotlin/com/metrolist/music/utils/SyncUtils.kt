@@ -712,7 +712,7 @@ class SyncUtils @Inject constructor(
             result.onSuccess { page ->
                 try {
                     val uploadAlbums = page.items.filterIsInstance<AlbumItem>().filter { it.browseId.contains("FEmusic_library_privately_owned_release_detail") }
-                    val songsFromAlbums = uploadAlbums.flatMap { album -> YouTube.album(album.browseId).getOrNull()?.songs ?: emptyList() }
+                    val songsFromAlbums = uploadAlbums.flatMap { album -> YouTube.album(album.browseId).getOrNull()?.songs?.map { it.copy(musicVideoType = "MUSIC_VIDEO_TYPE_ATV") } ?: emptyList() }
                     Timber.d("[sync2] items=${page.items.size} uploadAlbums=${uploadAlbums.size} songsFromAlbums=${songsFromAlbums.size}")
                     val remoteSongs = (page.items.filterIsInstance<SongItem>() + songsFromAlbums).reversed()
                     val remoteIds = remoteSongs.map { it.id }.toSet()
@@ -774,7 +774,7 @@ class SyncUtils @Inject constructor(
             result.onSuccess { page ->
                 try {
                     val uploadAlbums = page.items.filterIsInstance<AlbumItem>().filter { it.browseId.contains("FEmusic_library_privately_owned_release_detail") }
-                    val songsFromAlbums = uploadAlbums.flatMap { album -> YouTube.album(album.browseId).getOrNull()?.songs ?: emptyList() }
+                    val songsFromAlbums = uploadAlbums.flatMap { album -> YouTube.album(album.browseId).getOrNull()?.songs?.map { it.copy(musicVideoType = "MUSIC_VIDEO_TYPE_ATV") } ?: emptyList() }
                     Timber.d("[sync2] items=${page.items.size} uploadAlbums=${uploadAlbums.size} songsFromAlbums=${songsFromAlbums.size}")
                     val remoteSongs = (page.items.filterIsInstance<SongItem>() + songsFromAlbums).reversed()
                     val remoteIds = remoteSongs.map { it.id }.toSet()
