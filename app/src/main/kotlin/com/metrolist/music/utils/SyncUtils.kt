@@ -713,7 +713,8 @@ class SyncUtils @Inject constructor(
                 try {
                     val uploadAlbums = page.items.filterIsInstance<AlbumItem>().filter { it.browseId.contains("FEmusic_library_privately_owned_release_detail") }
                     val songsFromAlbums = uploadAlbums.flatMap { album ->
-                        YouTube.album(album.browseId).getOrNull()?.songs?.map { it.copy(musicVideoType = "MUSIC_VIDEO_TYPE_ATV") } ?: emptyList()
+                        val entityId = album.browseId.removePrefix("FEmusic_library_privately_owned_release_detail")
+                        YouTube.album(album.browseId).getOrNull()?.songs?.map { it.copy(musicVideoType = "MUSIC_VIDEO_TYPE_ATV", uploadEntityId = entityId.ifEmpty { null }) } ?: emptyList()
                     }
                     Timber.d("[sync2] items=${page.items.size} uploadAlbums=${uploadAlbums.size} songsFromAlbums=${songsFromAlbums.size}")
                     val remoteSongs = (page.items.filterIsInstance<SongItem>() + songsFromAlbums).reversed()
@@ -777,7 +778,8 @@ class SyncUtils @Inject constructor(
                 try {
                     val uploadAlbums = page.items.filterIsInstance<AlbumItem>().filter { it.browseId.contains("FEmusic_library_privately_owned_release_detail") }
                     val songsFromAlbums = uploadAlbums.flatMap { album ->
-                        YouTube.album(album.browseId).getOrNull()?.songs?.map { it.copy(musicVideoType = "MUSIC_VIDEO_TYPE_ATV") } ?: emptyList()
+                        val entityId = album.browseId.removePrefix("FEmusic_library_privately_owned_release_detail")
+                        YouTube.album(album.browseId).getOrNull()?.songs?.map { it.copy(musicVideoType = "MUSIC_VIDEO_TYPE_ATV", uploadEntityId = entityId.ifEmpty { null }) } ?: emptyList()
                     }
                     Timber.d("[sync2] items=${page.items.size} uploadAlbums=${uploadAlbums.size} songsFromAlbums=${songsFromAlbums.size}")
                     val remoteSongs = (page.items.filterIsInstance<SongItem>() + songsFromAlbums).reversed()
