@@ -711,8 +711,10 @@ class SyncUtils @Inject constructor(
         }.onSuccess { result ->
             result.onSuccess { page ->
                 try {
-                    Timber.d("[sync2] items= types=${page.items.map{it::class.simpleName}.distinct()}")
-                    val remoteSongs = page.items.filterIsInstance<SongItem>().reversed()
+                    val uploadAlbums = page.items.filterIsInstance<AlbumItem>().filter { it.browseId.contains("FEmusic_library_privately_owned_release_detail") }
+                    val songsFromAlbums = uploadAlbums.flatMap { album -> YouTube.album(album.browseId).getOrNull()?.songs ?: emptyList() }
+                    Timber.d("[sync2] items=${page.items.size} uploadAlbums=${uploadAlbums.size} songsFromAlbums=${songsFromAlbums.size}")
+                    val remoteSongs = (page.items.filterIsInstance<SongItem>() + songsFromAlbums).reversed()
                     val remoteIds = remoteSongs.map { it.id }.toSet()
                     val localSongs = database.songsByNameAsc().first()
 
@@ -771,8 +773,10 @@ class SyncUtils @Inject constructor(
         }.onSuccess { result ->
             result.onSuccess { page ->
                 try {
-                    Timber.d("[sync2] items= types=${page.items.map{it::class.simpleName}.distinct()}")
-                    val remoteSongs = page.items.filterIsInstance<SongItem>().reversed()
+                    val uploadAlbums = page.items.filterIsInstance<AlbumItem>().filter { it.browseId.contains("FEmusic_library_privately_owned_release_detail") }
+                    val songsFromAlbums = uploadAlbums.flatMap { album -> YouTube.album(album.browseId).getOrNull()?.songs ?: emptyList() }
+                    Timber.d("[sync2] items=${page.items.size} uploadAlbums=${uploadAlbums.size} songsFromAlbums=${songsFromAlbums.size}")
+                    val remoteSongs = (page.items.filterIsInstance<SongItem>() + songsFromAlbums).reversed()
                     val remoteIds = remoteSongs.map { it.id }.toSet()
                     val localSongs = database.uploadedSongsByNameAsc().first()
 
