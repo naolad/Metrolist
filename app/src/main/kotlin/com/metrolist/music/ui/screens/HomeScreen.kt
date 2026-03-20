@@ -2281,7 +2281,7 @@ fun HomeScreen(
                                                 {
                                                     playerConnection.playQueue(
                                                         ListQueue(
-                                                            title = sectionData.title.replace("再生リスト", "プレイリスト").replace("最近聞いていないお気に入り", "最近聴いていないお気に入り"),
+                                                            title = sectionData.title.replace("再生リスト", "プレイリスト").replace("最近聞いていないお気に入り", "最近聴いていないお気に入り").replace("おすすめのミュージックビデオ", "おすすめのMV").replace("新しい曲や過去のお気に入り", "新曲や過去のお気に入り").replace("急上昇のショート動画", "急上昇").replace("新作", "新曲"),
                                                             items = sectionSongs.map { it.toMediaMetadata().toMediaItem() },
                                                         ),
                                                     )
