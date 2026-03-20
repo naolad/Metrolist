@@ -716,7 +716,6 @@ class SyncUtils @Inject constructor(
                         val entityId = album.browseId.removePrefix("FEmusic_library_privately_owned_release_detail")
                         YouTube.album(album.browseId).getOrNull()?.songs?.map { it.copy(musicVideoType = "MUSIC_VIDEO_TYPE_ATV", uploadEntityId = entityId.ifEmpty { null }) } ?: emptyList()
                     }
-                    Timber.d("[sync2] items=${page.items.size} uploadAlbums=${uploadAlbums.size} songsFromAlbums=${songsFromAlbums.size}")
                     val remoteSongs = (page.items.filterIsInstance<SongItem>() + songsFromAlbums).reversed()
                     val remoteIds = remoteSongs.map { it.id }.toSet()
                     val localSongs = database.songsByNameAsc().first()
@@ -781,11 +780,9 @@ class SyncUtils @Inject constructor(
                         val entityId = album.browseId.removePrefix("FEmusic_library_privately_owned_release_detail")
                         YouTube.album(album.browseId).getOrNull()?.songs?.map { it.copy(musicVideoType = "MUSIC_VIDEO_TYPE_ATV", uploadEntityId = entityId.ifEmpty { null }) } ?: emptyList()
                     }
-                    Timber.d("[sync2] items=${page.items.size} uploadAlbums=${uploadAlbums.size} songsFromAlbums=${songsFromAlbums.size}")
                     val remoteSongs = (page.items.filterIsInstance<SongItem>() + songsFromAlbums).reversed()
                     val remoteIds = remoteSongs.map { it.id }.toSet()
                     val localSongs = database.uploadedSongsByNameAsc().first()
-                    Timber.d("[db] uploadedSongs in DB: ${localSongs.size} ids=${localSongs.map{it.id}}")
 
                     // Remove uploaded flag from songs no longer in remote
                     localSongs.filterNot { it.id in remoteIds }.forEach { song ->
@@ -804,12 +801,9 @@ class SyncUtils @Inject constructor(
                             database.transaction {
                                 if (dbSong == null) {
                                     insert(song.toMediaMetadata()) { it.toggleUploaded() }
-                                    Timber.d("[insert] inserted id=${song.id} title=${song.title} isUploaded=true")
                                 } else if (!dbSong.song.isUploaded) {
                                     update(dbSong.song.copy(isUploaded = true, uploadEntityId = song.uploadEntityId))
-                                    Timber.d("[insert] updated id=${song.id} isUploaded=true")
                                 } else {
-                                    Timber.d("[insert] already exists id=${song.id} isUploaded=${dbSong.song.isUploaded}")
                                 }
                             }
                             delay(DB_OPERATION_DELAY_MS)
@@ -819,7 +813,6 @@ class SyncUtils @Inject constructor(
                     }
 
                     updateState { copy(uploadedSongs = SyncStatus.Completed) }
-                    Timber.d("[sync] remoteSongs=${remoteSongs.size} page.items=${page.items.size}")
                 } catch (e: Exception) {
                     Timber.e(e, "Error processing uploaded songs")
                     updateState { copy(uploadedSongs = SyncStatus.Error(e.message ?: "Unknown error")) }

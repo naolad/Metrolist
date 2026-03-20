@@ -917,23 +917,14 @@ object YouTube {
 
     suspend fun library(browseId: String, tabIndex: Int = 0): Result<LibraryPage> {
         return runCatching {
-            val rawBody = innerTube.browse(
+            val response = innerTube.browse(
                 client = WEB_REMIX,
                 browseId = browseId,
                 setLogin = true
-            )
-            if (browseId == "FEmusic_library_privately_owned_tracks") {
-                val rawText = rawBody.bodyAsText()
-                Timber.d("[library] RAW(first500): ${rawText.substring(minOf(1800, rawText.length))}")
-            }
-            val response = rawBody.body<BrowseResponse>()
+            ).body<BrowseResponse>()
 
             // Some endpoints (e.g. FEmusic_library_privately_owned_tracks) return content
             // directly in sectionListRenderer without a tab wrapper.
-            val scbr = response.contents?.singleColumnBrowseResultsRenderer
-            val tabsSize = scbr?.tabs?.size ?: -1
-            val tab0content = if (tabsSize > 0) scbr?.tabs?.get(0)?.tabRenderer?.content else null
-            Timber.d("[library] browseId=$browseId singleCol=${scbr != null} tabsSize=$tabsSize tab0content=${tab0content != null} sectionList=${tab0content?.sectionListRenderer != null}")
             val contents = when {
                 response.contents?.singleColumnBrowseResultsRenderer != null -> {
                     val tabs = response.contents.singleColumnBrowseResultsRenderer.tabs
@@ -953,7 +944,6 @@ object YouTube {
                 else -> null
             }
 
-            scbr?.tabs?.forEachIndexed { ti: Int, tab: com.metrolist.innertube.models.Tabs.Tab -> val tcon = tab.tabRenderer.content; Timber.d("[library] tab$ti: content=${tcon != null} sectionList=${tcon?.sectionListRenderer != null} items=${tcon?.sectionListRenderer?.contents?.size}"); tcon?.sectionListRenderer?.contents?.forEachIndexed { ci: Int, c: com.metrolist.innertube.models.SectionListRenderer.Content -> Timber.d("[library] tab$ti/$ci: shelf=${c.musicShelfRenderer != null} grid=${c.gridRenderer != null} playlist=${c.musicPlaylistShelfRenderer != null} carousel=${c.musicCarouselShelfRenderer != null} header=${c.musicResponsiveHeaderRenderer != null} itemSection=${c.musicCardShelfRenderer != null}") } }
             when {
                 contents?.gridRenderer != null -> {
                     val gridItems = contents.gridRenderer.items
