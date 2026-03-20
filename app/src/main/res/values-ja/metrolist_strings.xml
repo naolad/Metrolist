@@ -885,7 +885,7 @@
     <string name="alarm_duplicate_time_warning">この時刻にはすでに別のアラームがあります。同時に作動した場合、どちらか一方しか再生されない可能性があります。</string>
     <string name="alarm_random_song">プレイリストからランダムに曲を再生</string>
     <string name="alarm_next_trigger">次回の実行</string>
-    <string name="alarm_not_scheduled"未設定</string>
+    <string name="alarm_not_scheduled">未設定</string>
     <string name="alarm_exact_permission_title">正確なアラームを許可</string>
     <string name="alarm_exact_permission_desc">正確なアラームの権限により、アプリがバックグラウンドにある場合の信頼性が向上します。</string>
     <string name="alarm_battery_optimization_title">バッテリーの最適化</string>
