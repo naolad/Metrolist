@@ -656,3 +656,39 @@ val CountryCodeToName =
         "YE" to "Yemen",
         "ZW" to "Zimbabwe",
     )
+
+// Alarm
+val AlarmEnabledKey = booleanPreferencesKey("alarm_enabled")
+val AlarmEntriesKey = stringPreferencesKey("alarm_entries")
+val AlarmHourKey = intPreferencesKey("alarm_hour")
+val AlarmMinuteKey = intPreferencesKey("alarm_minute")
+val AlarmNextTriggerAtKey = longPreferencesKey("alarm_next_trigger_at")
+val AlarmPlaylistIdKey = stringPreferencesKey("alarm_playlist_id")
+val AlarmRandomSongKey = booleanPreferencesKey("alarm_random_song")
+
+// Android Auto
+val AndroidAutoSectionsOrderKey = stringPreferencesKey("android_auto_sections_order")
+val AndroidAutoTargetPlaylistKey = stringPreferencesKey("android_auto_target_playlist")
+val AndroidAutoYouTubePlaylistsKey = booleanPreferencesKey("android_auto_youtube_playlists")
+
+// AI
+val AiSystemPromptKey = stringPreferencesKey("ai_system_prompt")
+const val DEFAULT_AI_SYSTEM_PROMPT = ""
+
+// Alarm
+val AlarmEnabledKey = booleanPreferencesKey("alarm_enabled")
+val AlarmEntriesKey = stringPreferencesKey("alarm_entries")
+val AlarmHourKey = intPreferencesKey("alarm_hour")
+val AlarmMinuteKey = intPreferencesKey("alarm_minute")
+val AlarmNextTriggerAtKey = longPreferencesKey("alarm_next_trigger_at")
+val AlarmPlaylistIdKey = stringPreferencesKey("alarm_playlist_id")
+val AlarmRandomSongKey = booleanPreferencesKey("alarm_random_song")
+
+// Android Auto
+val AndroidAutoSectionsOrderKey = stringPreferencesKey("android_auto_sections_order")
+val AndroidAutoTargetPlaylistKey = stringPreferencesKey("android_auto_target_playlist")
+val AndroidAutoYouTubePlaylistsKey = booleanPreferencesKey("android_auto_youtube_playlists")
+
+// AI
+val AiSystemPromptKey = stringPreferencesKey("ai_system_prompt")
+const val DEFAULT_AI_SYSTEM_PROMPT = ""
