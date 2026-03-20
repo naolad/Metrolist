@@ -44,7 +44,6 @@
     <string name="link_copied">リンクをクリップボードにコピーしました</string>
     <string name="lyrics">歌詞</string>
     <string name="copy_all_lyrics">歌詞をコピー</string>
-    <string name="change">変更</string>
     <string name="dislike_all">すべて低評価</string>
     <string name="share_as_text">テキストとして共有</string>
     <string name="share_as_image">画像として共有</string>
@@ -347,7 +346,6 @@
     <string name="create">作成</string>
     <string name="join">参加</string>
     <string name="copy">コピー</string>
-    <string name="change">変更</string>
     <string name="copied_to_clipboard">クリップボードにコピーしました</string>
     <string name="kick_user">キック</string>
     <string name="host_label">ホスト</string>
