@@ -567,8 +567,6 @@ fun LocalPlaylistScreen(
                         database.transaction {
                             coroutineScope.launch {
                                 playlist?.playlist?.browseId?.let { browseId ->
-                                    android.util.Log.d("PlaylistDelete", "songId=${currentItem.map.songId} setVideoId=${currentItem.map.setVideoId} browseId=$browseId")
-                                    android.util.Log.d("PlaylistDelete", "songId=${currentItem.map.songId} setVideoId=${currentItem.map.setVideoId} browseId=$browseId")
                                     currentItem.map.setVideoId?.let { setVideoIdValue ->
                                         YouTube.removeFromPlaylist(
                                             browseId,

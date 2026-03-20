@@ -763,7 +763,6 @@ fun SongMenu(
                                 onClick = {
                                     database.transaction {
                                         coroutineScope.launch {
-                                            android.util.Log.d("PlaylistDelete", "songId=${playlistSong.map.songId} setVideoId=${playlistSong.map.setVideoId} browseId=$playlistBrowseId")
                                             playlistBrowseId?.let { playlistId ->
                                                 if (playlistSong.map.setVideoId != null) {
                                                     YouTube.removeFromPlaylist(
