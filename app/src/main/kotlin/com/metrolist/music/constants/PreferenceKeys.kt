@@ -656,3 +656,15 @@ val CountryCodeToName =
         "YE" to "Yemen",
         "ZW" to "Zimbabwe",
     )
+val AlarmEnabledKey = booleanPreferencesKey("alarmEnabled")
+val AlarmHourKey = intPreferencesKey("alarmHour")
+val AlarmMinuteKey = intPreferencesKey("alarmMinute")
+val AlarmPlaylistIdKey = stringPreferencesKey("alarmPlaylistId")
+val AlarmRandomSongKey = booleanPreferencesKey("alarmRandomSong")
+val AlarmNextTriggerAtKey = longPreferencesKey("alarmNextTriggerAt")
+val AlarmEntriesKey = stringPreferencesKey("alarmEntries")
+val AiSystemPromptKey = stringPreferencesKey("aiSystemPrompt")
+const val DEFAULT_AI_SYSTEM_PROMPT = ""
+val AndroidAutoYouTubePlaylistsKey = booleanPreferencesKey("androidAutoYoutubePlaylists")
+val AndroidAutoSectionsOrderKey = stringPreferencesKey("androidAutoSectionsOrder")
+val AndroidAutoTargetPlaylistKey = stringPreferencesKey("androidAutoTargetPlaylist")
