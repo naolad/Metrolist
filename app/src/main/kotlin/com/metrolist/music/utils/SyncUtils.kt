@@ -1480,6 +1480,12 @@ class SyncUtils @Inject constructor(
                             )
                         }
                     }
+                    // Update isEditable from remote
+                    database.playlist(playlistId).firstOrNull()?.playlist?.let { entity ->
+                        if (entity.isEditable != page.playlist.isEditable) {
+                            database.update(entity.copy(isEditable = page.playlist.isEditable))
+                        }
+                    }
                     Timber.d("syncPlaylist: Successfully synced playlist")
                 } catch (e: Exception) {
                     Timber.e(e, "Error processing playlist sync")
