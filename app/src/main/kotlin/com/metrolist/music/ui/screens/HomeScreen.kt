@@ -1289,7 +1289,7 @@ fun HomeScreen(
                         sectionData?.let {
                             item(key = "1_chip_section_title_${section.index}") {
                                 NavigationTitle(
-                                    title = sectionData.title.replace("再生リスト", "プレイリスト").replace("最近聞いていないお気に入り", "最近聴いていないお気に入り"),
+                                    title = sectionData.title.replace("再生リスト", "プレイリスト").replace("最近聞いていないお気に入り", "最近聴いていないお気に入り").replace("おすすめのミュージックビデオ", "おすすめのMV").replace("人気のミュージックビデオ", "人気のMV").replace("新しい曲や過去のお気に入り", "新曲や過去のお気に入り").replace("急上昇のショート動画", "急上昇").replace("新作", "新曲"),
                                     label = sectionData.label,
                                     thumbnail =
                                         sectionData.thumbnail?.let { thumbnailUrl ->
@@ -2227,7 +2227,7 @@ fun HomeScreen(
 
                                 item(key = "home_section_title_${section.index}") {
                                     NavigationTitle(
-                                        title = sectionData.title.replace("再生リスト", "プレイリスト").replace("最近聞いていないお気に入り", "最近聴いていないお気に入り").replace("おすすめのミュージックビデオ", "おすすめのMV").replace("新しい曲や過去のお気に入り", "新曲や過去のお気に入り").replace("急上昇のショート動画", "急上昇").replace("新作", "新曲"),
+                                        title = sectionData.title.replace("再生リスト", "プレイリスト").replace("最近聞いていないお気に入り", "最近聴いていないお気に入り").replace("おすすめのミュージックビデオ", "おすすめのMV").replace("人気のミュージックビデオ", "人気のMV").replace("新しい曲や過去のお気に入り", "新曲や過去のお気に入り").replace("急上昇のショート動画", "急上昇").replace("新作", "新曲"),
                                         label = sectionData.label,
                                         thumbnail =
                                             sectionData.thumbnail?.let { thumbnailUrl ->
