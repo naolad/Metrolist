@@ -147,9 +147,9 @@ fun LibrarySongsScreen(
             while (pollAttempt < 20) { viewModel.syncUploadedSongs(); kotlinx.coroutines.delay(15_000L); pollAttempt++ }
         } else { showUploadDialog = false }
     }
-    val playerConnection = LocalPlayerConnection.current ?: return
-    val isPlaying by playerConnection.isEffectivelyPlaying.collectAsState()
-    val mediaMetadata by playerConnection.mediaMetadata.collectAsState()
+    val playerConnection = LocalplayerConnection?.current
+    val isPlaying by playerConnection?.isEffectivelyPlaying?.collectAsState() ?: remember { mutableStateOf(false) }
+    val mediaMetadata by playerConnection?.mediaMetadata?.collectAsState() ?: remember { mutableStateOf<com.metrolist.music.models.MediaMetadata?>(null) }
 
     val (sortType, onSortTypeChange) =
         rememberEnumPreference(
@@ -369,9 +369,9 @@ fun LibrarySongsScreen(
                             .fillMaxWidth()
                             .clickable {
                                 if (song.id == mediaMetadata?.id) {
-                                    playerConnection.togglePlayPause()
+                                    playerConnection?.togglePlayPause()
                                 } else {
-                                    playerConnection.playQueue(
+                                    playerConnection?.playQueue(
                                         ListQueue(
                                             title = queueAllSongsStr,
                                             items = filteredSongs.map { it.toMediaItem() },
@@ -402,7 +402,7 @@ fun LibrarySongsScreen(
                         ),
                     )
                 } else {
-                    playerConnection.playQueue(
+                    playerConnection?.playQueue(
                         ListQueue(
                             title = queueAllSongsStr,
                             items = filteredSongs.shuffled().map { it.toMediaItem() },
