@@ -147,7 +147,7 @@ fun LibrarySongsScreen(
             while (pollAttempt < 20) { viewModel.syncUploadedSongs(); kotlinx.coroutines.delay(15_000L); pollAttempt++ }
         } else { showUploadDialog = false }
     }
-    val playerConnection = LocalplayerConnection?.current
+    val playerConnection = LocalPlayerConnection.current
     val isPlaying by playerConnection?.isEffectivelyPlaying?.collectAsState() ?: remember { mutableStateOf(false) }
     val mediaMetadata by playerConnection?.mediaMetadata?.collectAsState() ?: remember { mutableStateOf<com.metrolist.music.models.MediaMetadata?>(null) }
 
