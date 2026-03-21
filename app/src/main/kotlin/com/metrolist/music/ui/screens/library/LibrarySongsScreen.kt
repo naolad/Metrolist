@@ -132,7 +132,7 @@ fun LibrarySongsScreen(
 
     val filePickerLauncher =
         rememberLauncherForActivityResult(
-            contract = ActivityResultContracts.OpenMultipleDocuments(),
+            contract = ActivityResultContracts.GetMultipleContents(),
         ) { uris: List<Uri> ->
             if (uris.isNotEmpty()) {
                 uploadJob =
@@ -461,16 +461,7 @@ fun LibrarySongsScreen(
             icon = if (filter == SongFilter.UPLOADED) R.drawable.upload else R.drawable.shuffle,
             onClick = {
                 if (filter == SongFilter.UPLOADED) {
-                    filePickerLauncher.launch(
-                        arrayOf(
-                            "audio/mpeg",
-                            "audio/mp4",
-                            "audio/x-m4a",
-                            "audio/flac",
-                            "audio/ogg",
-                            "audio/x-ms-wma",
-                        ),
-                    )
+                    filePickerLauncher.launch("audio/*")
                 } else {
                     playerConnection.playQueue(
                         ListQueue(
