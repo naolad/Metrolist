@@ -102,10 +102,47 @@ fun LibrarySongsScreen(
     val uploadFailedStr = stringResource(R.string.upload_failed)
     val uploadCompleteStr = stringResource(R.string.upload_complete)
     val queueAllSongsStr = stringResource(R.string.queue_all_songs)
+    val scope = rememberCoroutineScope()
+    var pendingUploadUris by remember { mutableStateOf<List<Uri>>(emptyList()) }
+    LaunchedEffect(pendingUploadUris) {
+        if (pendingUploadUris.isEmpty()) return@LaunchedEffect
+        val uris = pendingUploadUris
+        pendingUploadUris = emptyList()
+        isUploading = true
+        showUploadDialog = true
+        totalUploads = uris.size
+        var successCount = 0
+        uris.forEachIndexed { index, uri ->
+            currentUploadIndex = index + 1
+            uploadProgress = 0f
+            try {
+                val fileName = context.contentResolver.query(uri, arrayOf(android.provider.OpenableColumns.DISPLAY_NAME), null, null, null)?.use { cursor -> if (cursor.moveToFirst()) cursor.getString(0) else null } ?: uri.lastPathSegment?.substringAfterLast('/') ?: "unknown"
+                currentFileName = fileName
+                val extension = fileName.substringAfterLast('.', "").lowercase()
+                if (extension !in YouTube.SUPPORTED_UPLOAD_TYPES) { withContext(Dispatchers.Main) { Toast.makeText(context, uploadUnsupportedFormatStr, Toast.LENGTH_SHORT).show() }; return@forEachIndexed }
+                val inputStream = context.contentResolver.openInputStream(uri)
+                val data = inputStream?.readBytes()
+                inputStream?.close()
+                if (data == null) return@forEachIndexed
+                if (data.size > YouTube.MAX_UPLOAD_SIZE) { withContext(Dispatchers.Main) { Toast.makeText(context, uploadFileTooLargeStr, Toast.LENGTH_SHORT).show() }; return@forEachIndexed }
+                val result = YouTube.uploadSong(filename = fileName, data = data, onProgress = { progress -> uploadProgress = progress })
+                if (result.isSuccess && result.getOrDefault(false)) { successCount++ }
+            } catch (e: Exception) { withContext(Dispatchers.Main) { Toast.makeText(context, uploadFailedStr + ": ${e.message}", Toast.LENGTH_SHORT).show() } }
+        }
+        isUploading = false
+        if (successCount > 0) {
+            uploadProgress = 1f
+            currentFileName = uploadCompleteStr
+            kotlinx.coroutines.delay(1000)
+            withContext(Dispatchers.Main) { Toast.makeText(context, uploadCompleteStr, Toast.LENGTH_SHORT).show() }
+            showUploadDialog = false
+            var pollAttempt = 0
+            while (pollAttempt < 20) { viewModel.syncUploadedSongs(); kotlinx.coroutines.delay(15_000L); pollAttempt++ }
+        } else { showUploadDialog = false }
+    }
     val playerConnection = LocalPlayerConnection.current ?: return
     val isPlaying by playerConnection.isEffectivelyPlaying.collectAsState()
     val mediaMetadata by playerConnection.mediaMetadata.collectAsState()
-    val scope = rememberCoroutineScope()
 
     val (sortType, onSortTypeChange) =
         rememberEnumPreference(
@@ -129,8 +166,6 @@ fun LibrarySongsScreen(
     var currentFileName by remember { mutableStateOf("") }
     var isUploading by remember { mutableStateOf(false) }
     var uploadJob by remember { mutableStateOf<kotlinx.coroutines.Job?>(null) }
-    var pendingUploadUris by remember { mutableStateOf<List<Uri>>(emptyList()) }
-
     val filePickerLauncher =
         rememberLauncherForActivityResult(
             contract = ActivityResultContracts.OpenMultipleDocuments(),
@@ -139,115 +174,7 @@ fun LibrarySongsScreen(
                 pendingUploadUris = uris
             }
         }
-    LaunchedEffect(pendingUploadUris) {
-        if (pendingUploadUris.isEmpty()) return@LaunchedEffect
-        val uris = pendingUploadUris
-        pendingUploadUris = emptyList()
-        isUploading = true
-        showUploadDialog = true
-        totalUploads = uris.size
-        var successCount = 0
-
-                        uris.forEachIndexed { index, uri ->
-                            currentUploadIndex = index + 1
-                            uploadProgress = 0f
-
-                            try {
-                                val fileName = context.contentResolver.query(
-                                    uri, arrayOf(android.provider.OpenableColumns.DISPLAY_NAME), null, null, null
-                                )?.use { cursor ->
-                                    if (cursor.moveToFirst()) cursor.getString(0) else null
-                                } ?: uri.lastPathSegment?.substringAfterLast('/') ?: "unknown"
-                                currentFileName = fileName
-                                val extension = fileName.substringAfterLast('.', "").lowercase()
-
-                                if (extension !in YouTube.SUPPORTED_UPLOAD_TYPES) {
-                                    withContext(Dispatchers.Main) {
-                                        Toast
-                                            .makeText(
-                                                context,
-                                                uploadUnsupportedFormatStr,
-                                                Toast.LENGTH_SHORT,
-                                            ).show()
-                                    }
-                                    return@forEachIndexed
-                                }
-
-                                val inputStream = context.contentResolver.openInputStream(uri)
-                                val data = inputStream?.readBytes()
-                                inputStream?.close()
-
-                                if (data == null) return@forEachIndexed
-
-                                if (data.size > YouTube.MAX_UPLOAD_SIZE) {
-                                    withContext(Dispatchers.Main) {
-                                        Toast
-                                            .makeText(
-                                                context,
-                                                uploadFileTooLargeStr,
-                                                Toast.LENGTH_SHORT,
-                                            ).show()
-                                    }
-                                    return@forEachIndexed
-                                }
-
-                                val result =
-                                    YouTube.uploadSong(
-                                        filename = fileName,
-                                        data = data,
-                                        onProgress = { progress ->
-                                            uploadProgress = progress
-                                        },
-                                    )
-
-                                if (result.isSuccess && result.getOrDefault(false)) {
-                                    successCount++
-                                }
-                            } catch (e: Exception) {
-                                withContext(Dispatchers.Main) {
-                                    Toast
-                                        .makeText(
-                                            context,
-                                            uploadFailedStr + ": ${e.message}",
-                                            Toast.LENGTH_SHORT,
-                                        ).show()
-                                }
-                            }
-                        }
-
-                        isUploading = false
-
-                        if (successCount > 0) {
-                            // Show completion briefly
-                            uploadProgress = 1f
-                            currentFileName = uploadCompleteStr
-                            kotlinx.coroutines.delay(1000)
-
-                            // Show toast on main thread
-                            withContext(Dispatchers.Main) {
-                                Toast
-                                    .makeText(
-                                        context,
-                                        uploadCompleteStr,
-                                        Toast.LENGTH_SHORT,
-                                    ).show()
-                            }
-
-                            showUploadDialog = false
-
-                            // Poll until YouTube processes the upload (can take several minutes)
-                            var pollAttempt = 0
-                            while (pollAttempt < 20) {
-                                viewModel.syncUploadedSongs()
-                                kotlinx.coroutines.delay(15_000L)
-                                pollAttempt++
-                            }
-        } else {
-            showUploadDialog = false
-        }
-    }
-
-    LaunchedEffect(Unit) {
+        LaunchedEffect(Unit) {
         if (ytmSync) {
             when (filter) {
                 SongFilter.LIKED -> viewModel.syncLikedSongs()
