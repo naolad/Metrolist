@@ -714,7 +714,7 @@ class SyncUtils @Inject constructor(
                     val uploadAlbums = page.items.filterIsInstance<AlbumItem>().filter { it.browseId.contains("FEmusic_library_privately_owned_release_detail") }
                     val songsFromAlbums = uploadAlbums.flatMap { album ->
                         val entityId = album.browseId.removePrefix("FEmusic_library_privately_owned_release_detail")
-                        YouTube.album(album.browseId).getOrNull()?.songs?.map { it.copy(musicVideoType = "MUSIC_VIDEO_TYPE_ATV", uploadEntityId = entityId.ifEmpty { null }) } ?: emptyList()
+                        YouTube.album(album.browseId).getOrNull()?.songs?.map { it.copy(musicVideoType = "MUSIC_VIDEO_TYPE_PRIVATELY_OWNED_TRACK", uploadEntityId = entityId.ifEmpty { null }) } ?: emptyList()
                     }
                     val remoteSongs = (page.items.filterIsInstance<SongItem>() + songsFromAlbums).reversed()
                     val remoteIds = remoteSongs.map { it.id }.toSet()
@@ -778,7 +778,7 @@ class SyncUtils @Inject constructor(
                     val uploadAlbums = page.items.filterIsInstance<AlbumItem>().filter { it.browseId.contains("FEmusic_library_privately_owned_release_detail") }
                     val songsFromAlbums = uploadAlbums.flatMap { album ->
                         val entityId = album.browseId.removePrefix("FEmusic_library_privately_owned_release_detail")
-                        YouTube.album(album.browseId).getOrNull()?.songs?.map { it.copy(musicVideoType = "MUSIC_VIDEO_TYPE_ATV", uploadEntityId = entityId.ifEmpty { null }) } ?: emptyList()
+                        YouTube.album(album.browseId).getOrNull()?.songs?.map { it.copy(musicVideoType = "MUSIC_VIDEO_TYPE_PRIVATELY_OWNED_TRACK", uploadEntityId = entityId.ifEmpty { null }) } ?: emptyList()
                     }
                     val remoteSongs = (page.items.filterIsInstance<SongItem>() + songsFromAlbums).reversed()
                     val remoteIds = remoteSongs.map { it.id }.toSet()
