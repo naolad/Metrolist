@@ -3013,7 +3013,14 @@ class MusicService :
 
                 songUrlCache[mediaId] =
                     streamUrl to System.currentTimeMillis() + (nonNullPlayback.streamExpiresInSeconds * 1000L)
-                return@Factory dataSpec.withUri(streamUrl.toUri()).subrange(dataSpec.uriPositionOffset, CHUNK_LENGTH)
+
+                val isPrivateTrack = nonNullPlayback.videoDetails?.musicVideoType == "MUSIC_VIDEO_TYPE_PRIVATELY_OWNED_TRACK"
+                val baseSpec = dataSpec.withUri(streamUrl.toUri()).subrange(dataSpec.uriPositionOffset, CHUNK_LENGTH)
+                return@Factory if (isPrivateTrack && YouTube.cookie != null) {
+                    baseSpec.buildUpon().setHttpRequestHeaders(mapOf("Cookie" to YouTube.cookie!!)).build()
+                } else {
+                    baseSpec
+                }
             }
         }
     }
