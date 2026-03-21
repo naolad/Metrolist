@@ -103,6 +103,13 @@ fun LibrarySongsScreen(
     val uploadCompleteStr = stringResource(R.string.upload_complete)
     val queueAllSongsStr = stringResource(R.string.queue_all_songs)
     val scope = rememberCoroutineScope()
+    var showUploadDialog by remember { mutableStateOf(false) }
+    var uploadProgress by remember { mutableFloatStateOf(0f) }
+    var currentUploadIndex by remember { mutableIntStateOf(0) }
+    var totalUploads by remember { mutableIntStateOf(0) }
+    var currentFileName by remember { mutableStateOf("") }
+    var isUploading by remember { mutableStateOf(false) }
+    var uploadJob by remember { mutableStateOf<kotlinx.coroutines.Job?>(null) }
     var pendingUploadUris by remember { mutableStateOf<List<Uri>>(emptyList()) }
     LaunchedEffect(pendingUploadUris) {
         if (pendingUploadUris.isEmpty()) return@LaunchedEffect
@@ -158,14 +165,6 @@ fun LibrarySongsScreen(
 
     var filter by rememberEnumPreference(SongFilterKey, SongFilter.LIKED)
 
-    // Upload state
-    var showUploadDialog by remember { mutableStateOf(false) }
-    var uploadProgress by remember { mutableFloatStateOf(0f) }
-    var currentUploadIndex by remember { mutableIntStateOf(0) }
-    var totalUploads by remember { mutableIntStateOf(0) }
-    var currentFileName by remember { mutableStateOf("") }
-    var isUploading by remember { mutableStateOf(false) }
-    var uploadJob by remember { mutableStateOf<kotlinx.coroutines.Job?>(null) }
     val filePickerLauncher =
         rememberLauncherForActivityResult(
             contract = ActivityResultContracts.OpenMultipleDocuments(),
