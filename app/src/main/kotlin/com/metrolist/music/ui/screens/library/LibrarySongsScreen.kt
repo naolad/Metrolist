@@ -247,6 +247,8 @@ fun LibrarySongsScreen(
                             showUploadDialog = false
                         }
                     }
+                }
+            }
         }
     }
 
