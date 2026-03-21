@@ -115,6 +115,7 @@ fun LibrarySongsScreen(
         if (pendingUploadUris.isEmpty()) return@LaunchedEffect
         val uris = pendingUploadUris
         pendingUploadUris = emptyList()
+        scope.launch {
         isUploading = true
         showUploadDialog = true
         totalUploads = uris.size
@@ -146,6 +147,7 @@ fun LibrarySongsScreen(
             var pollAttempt = 0
             while (pollAttempt < 20) { viewModel.syncUploadedSongs(); kotlinx.coroutines.delay(15_000L); pollAttempt++ }
         } else { showUploadDialog = false }
+        }
     }
     val playerConnection = LocalPlayerConnection.current
     val isPlaying by playerConnection?.isEffectivelyPlaying?.collectAsState() ?: remember { mutableStateOf(false) }
