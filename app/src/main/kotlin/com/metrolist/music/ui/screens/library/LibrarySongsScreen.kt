@@ -143,11 +143,10 @@ fun LibrarySongsScreen(
         if (pendingUploadUris.isEmpty()) return@LaunchedEffect
         val uris = pendingUploadUris
         pendingUploadUris = emptyList()
-        uploadJob = scope.launch {
-                        isUploading = true
-                        showUploadDialog = true
-                        totalUploads = uris.size
-                        var successCount = 0
+        isUploading = true
+        showUploadDialog = true
+        totalUploads = uris.size
+        var successCount = 0
 
                         uris.forEachIndexed { index, uri ->
                             currentUploadIndex = index + 1
@@ -243,12 +242,8 @@ fun LibrarySongsScreen(
                                 kotlinx.coroutines.delay(15_000L)
                                 pollAttempt++
                             }
-                        } else {
-                            showUploadDialog = false
-                        }
-                    }
-                }
-            }
+        } else {
+            showUploadDialog = false
         }
     }
 
