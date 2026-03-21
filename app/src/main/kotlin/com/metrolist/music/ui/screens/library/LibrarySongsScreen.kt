@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Metrolist Project (C) 2026
  * Licensed under GPL-3.0 | See git history for contributors
  */
@@ -129,14 +129,21 @@ fun LibrarySongsScreen(
     var currentFileName by remember { mutableStateOf("") }
     var isUploading by remember { mutableStateOf(false) }
     var uploadJob by remember { mutableStateOf<kotlinx.coroutines.Job?>(null) }
+    var pendingUploadUris by remember { mutableStateOf<List<Uri>>(emptyList()) }
 
     val filePickerLauncher =
         rememberLauncherForActivityResult(
             contract = ActivityResultContracts.OpenMultipleDocuments(),
         ) { uris: List<Uri> ->
             if (uris.isNotEmpty()) {
-                uploadJob =
-                    scope.launch {
+                pendingUploadUris = uris
+            }
+        }
+    LaunchedEffect(pendingUploadUris) {
+        if (pendingUploadUris.isEmpty()) return@LaunchedEffect
+        val uris = pendingUploadUris
+        pendingUploadUris = emptyList()
+        uploadJob = scope.launch {
                         isUploading = true
                         showUploadDialog = true
                         totalUploads = uris.size
@@ -240,8 +247,8 @@ fun LibrarySongsScreen(
                             showUploadDialog = false
                         }
                     }
-            }
         }
+    }
 
     LaunchedEffect(Unit) {
         if (ytmSync) {
