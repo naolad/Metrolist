@@ -2799,6 +2799,16 @@ class MusicService :
                                 .build()
                         } ?: response.request
                     }
+                    .addInterceptor { chain ->
+                        val request = chain.request()
+                        val host = request.url.host
+                        val cookie = YouTube.cookie
+                        if (cookie != null && (host.contains("googlevideo.com") || host.contains("youtube.com"))) {
+                            chain.proceed(request.newBuilder().header("Cookie", cookie).build())
+                        } else {
+                            chain.proceed(request)
+                        }
+                    }
                     .build(),
             ),
         )
