@@ -115,7 +115,7 @@ fun LibrarySongsScreen(
         if (pendingUploadUris.isEmpty()) return@LaunchedEffect
         val uris = pendingUploadUris
         pendingUploadUris = emptyList()
-        scope.launch {
+        kotlinx.coroutines.GlobalScope.launch(kotlinx.coroutines.Dispatchers.Main) {
         isUploading = true
         showUploadDialog = true
         totalUploads = uris.size
