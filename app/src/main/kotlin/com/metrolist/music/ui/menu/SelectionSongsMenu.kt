@@ -140,7 +140,7 @@ fun SelectionSongMenu(
     AddToPlaylistDialog(
         isVisible = showChoosePlaylistDialog,
         onGetSong = { playlist ->
-            withContext(Dispatchers.IO) {
+            coroutineScope.launch(Dispatchers.IO) {
                 songSelection.forEach { song ->
                     playlist.playlist.browseId?.let { browseId ->
                         YouTube.addToPlaylist(browseId, song.id)
